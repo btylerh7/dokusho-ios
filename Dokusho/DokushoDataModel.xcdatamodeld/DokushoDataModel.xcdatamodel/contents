@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="21754" systemVersion="22C65" minimumToolsVersion="Automatic" sourceLanguage="Swift" userDefinedModelVersionIdentifier="">
+    <entity name="CategoryEntry" representedClassName=".CategoryObject" syncable="YES">
+        <attribute name="categoryId" optional="YES" attributeType="String"/>
+        <attribute name="title" optional="YES" attributeType="String"/>
+        <relationship name="libraryEntries" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="LibraryEntry" inverseName="categories" inverseEntity="LibraryEntry"/>
+    </entity>
+    <entity name="ChapterEntry" representedClassName=".ChapterObject" syncable="YES">
+        <attribute name="chapter" optional="YES" attributeType="Float" defaultValueString="0.0" usesScalarValueType="YES"/>
+        <attribute name="id" optional="YES" attributeType="String"/>
+        <attribute name="lang" optional="YES" attributeType="String"/>
+        <attribute name="mangaId" optional="YES" attributeType="String"/>
+        <attribute name="sourceId" optional="YES" attributeType="String"/>
+        <attribute name="title" optional="YES" attributeType="String"/>
+        <attribute name="url" optional="YES" attributeType="String"/>
+        <relationship name="history" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="HistoryEntry" inverseName="chapter" inverseEntity="HistoryEntry"/>
+        <relationship name="manga" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="MangaEntry" inverseName="chapters" inverseEntity="MangaEntry"/>
+    </entity>
+    <entity name="HistoryEntry" representedClassName=".HistoryObject" syncable="YES">
+        <attribute name="chapterId" optional="YES" attributeType="String"/>
+        <attribute name="completed" optional="YES" attributeType="Boolean" usesScalarValueType="YES"/>
+        <attribute name="mangaId" optional="YES" attributeType="String"/>
+        <attribute name="progress" optional="YES" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES"/>
+        <attribute name="sourceId" optional="YES" attributeType="String"/>
+        <attribute name="total" optional="YES" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES"/>
+        <relationship name="chapter" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="ChapterEntry" inverseName="history" inverseEntity="ChapterEntry"/>
+        <relationship name="manga" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="MangaEntry" inverseName="history" inverseEntity="MangaEntry"/>
+    </entity>
+    <entity name="LibraryEntry" representedClassName=".LibraryEntryObject" syncable="YES">
+        <attribute name="image" optional="YES" attributeType="String"/>
+        <attribute name="mangaId" optional="YES" attributeType="String"/>
+        <attribute name="sourceId" optional="YES" attributeType="String"/>
+        <attribute name="title" optional="YES" attributeType="String"/>
+        <relationship name="categories" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="CategoryEntry" inverseName="libraryEntries" inverseEntity="CategoryEntry"/>
+        <relationship name="manga" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="MangaEntry"/>
+    </entity>
+    <entity name="MangaEntry" representedClassName=".MangaObject" syncable="YES">
+        <attribute name="author" optional="YES" attributeType="String"/>
+        <attribute name="chapterCount" optional="YES" attributeType="Integer 64" defaultValueString="0" usesScalarValueType="YES"/>
+        <attribute name="desc" optional="YES" attributeType="String"/>
+        <attribute name="id" optional="YES" attributeType="String"/>
+        <attribute name="image" optional="YES" attributeType="String"/>
+        <attribute name="sourceId" optional="YES" attributeType="String"/>
+        <attribute name="title" optional="YES" attributeType="String"/>
+        <attribute name="url" optional="YES" attributeType="String"/>
+        <relationship name="chapters" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="ChapterEntry" inverseName="manga" inverseEntity="ChapterEntry"/>
+        <relationship name="history" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="HistoryEntry" inverseName="manga" inverseEntity="HistoryEntry"/>
+    </entity>
+</model>
