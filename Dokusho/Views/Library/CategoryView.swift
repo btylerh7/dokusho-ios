@@ -41,6 +41,7 @@ struct CategoryView: View {
                     MangaDetailsView(manga: tile)
                 }
             }
+            .background(ThemeManager.shared.currentTheme.secondaryColor)
     }
 }
 

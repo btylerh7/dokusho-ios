@@ -7,6 +7,8 @@
 
 import Foundation
 
+// TODO: Add endpoints for fetching and updating page counts
+
 public enum KomgaEndpoints {
     case homepage
     case mangadetails

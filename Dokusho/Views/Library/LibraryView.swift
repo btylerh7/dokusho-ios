@@ -28,9 +28,14 @@ struct LibraryView: View {
         List(viewModel.categories, id:\.self) {category in
             NavigationLink(value: category) {
                 Text(category)
+                    .foregroundColor(ThemeManager.shared.currentTheme.textColor)
             }
+            .listRowBackground(ThemeManager.shared.currentTheme.listBackgroundColor)
+
         }
+        .scrollContentBackground(.hidden)
         .navigationTitle("Library")
+        .background(ThemeManager.shared.currentTheme.secondaryColor)
         .navigationDestination(for: String.self) { category in
             CategoryView(selectedCategory: category)
         }        .onAppear {

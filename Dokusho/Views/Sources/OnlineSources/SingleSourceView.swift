@@ -45,6 +45,8 @@ struct SingleSourceView: View {
                 viewModel.getHomepageResults(source: source)
             }
         }
+        .toolbarBackground(.hidden, for: .navigationBar)
+        .background(ThemeManager.shared.currentTheme.secondaryColor)
 
     }
 }

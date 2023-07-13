@@ -13,7 +13,6 @@ struct ZoomImageReaderView: View {
     let chapter: Chapter
     let source: Source
     
-    @State var isHidden = false
     @State var selectedIndex = 0
     @State var scannedText = ""
     @State var isPresentingScannedTextView = false
@@ -23,8 +22,8 @@ struct ZoomImageReaderView: View {
     var body: some View {
         NavigationStack {
             VStack {
-                ExtractedView(chapter: chapter, source: source, isHidden: $isHidden, selectedIndex: $selectedIndex, scannedText: $scannedText, isPresentingScannedTextView: $isPresentingScannedTextView, pages: $pages)
-                Text("Page \(selectedIndex + 1) of \(viewModel.totalPagesObservable.value)")
+                ExtractedView(chapter: chapter, source: source, viewModel: viewModel, selectedIndex: $selectedIndex, scannedText: $scannedText, isPresentingScannedTextView: $isPresentingScannedTextView, pages: $pages)
+                
             }
         }
         .onAppear {
@@ -59,30 +58,47 @@ struct ExtractedView: View {
     @Environment(\.dismiss) var dismiss
     let chapter: Chapter
     let source: Source
-    @Binding var isHidden: Bool
+    @StateObject var viewModel: ReaderViewModel
     @Binding var selectedIndex: Int
     @Binding var scannedText: String
     @Binding var isPresentingScannedTextView: Bool
     @Binding var pages: [ChapterPage]
+    @State var opacity = 1.0
     var body: some View {
-        TabView(selection: $selectedIndex) {
-            ForEach(pages, id:\.self) { page in
-                ImageZoomView(imageUrl: page.link, scannedText: scannedText)
-                    .tag(pages.firstIndex(of: page) ?? 0)
+        VStack {
+            HStack(alignment: .center) {
+                Image(systemName: "x.circle.fill")
+                    .onTapGesture {
+                        dismiss()
+                    }
+                Spacer()
+                Text("Chapter \(chapter.chapNumString)")
+                    .font(.headline)
+                Spacer()
             }
-        }
-        .tabViewStyle(PageTabViewStyle())
-        .navigationTitle("Chapter \(chapter.chapNumString)")
-        .navigationBarTitleDisplayMode(.inline)
-        .toolbar {
-            if isHidden == false {
-                ToolbarItem(placement:.navigationBarLeading) {
-                    Image(systemName: "x.circle.fill")
-                        .onTapGesture {
-                            dismiss()
-                        }
+            .opacity(opacity)
+            .disabled(opacity == 1 ? false : true)
+            .padding()
+            TabView(selection: $selectedIndex) {
+                ForEach(pages, id:\.self) { page in
+                    ImageZoomView(imageUrl: page.link, scannedText: scannedText)
+                        .tag(pages.firstIndex(of: page) ?? 0)
                 }
             }
+            
+            .tabViewStyle(PageTabViewStyle())
+            HStack {
+                Button {
+                    opacity = opacity == 1 ? 0 : 1
+                } label: {
+                    Image(systemName: opacity == 0 ? "eye.slash" : "eye.slash.fill")
+                }
+
+                Text("Page \(selectedIndex + 1) of \(viewModel.totalPagesObservable.value)")
+                    .opacity(opacity)
+                
+            }
         }
+
     }
 }

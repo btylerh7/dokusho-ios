@@ -48,33 +48,44 @@ struct MainTabBarView: View {
             NavigationStack(path:$libraryPath) {
                     LibraryView()
             }
+            .toolbarBackground(.hidden, for: .navigationBar)
                 .tabItem {
                     Label("Library", systemImage: "books.vertical.fill")
+                        .foregroundColor(ThemeManager.shared.currentTheme.textColor)
                 }
                 .tag(0)
             NavigationStack(path: $sourcesPath) {
                 SourcesView()
             }
+            .toolbarBackground(.hidden, for: .navigationBar)
+            
                 .tabItem {
                     Label("Sources", systemImage: "globe")
+                        .foregroundColor(ThemeManager.shared.currentTheme.textColor)
                 }
                 .tag(1)
             NavigationStack(path: $searchPath) {
                 SearchView()
+                    .toolbarBackground(.hidden, for: .navigationBar)
             }
+            
                 .tabItem {
                     Label("Search", systemImage: "magnifyingglass")
+                        .foregroundColor(ThemeManager.shared.currentTheme.textColor)
                 }
                 .tag(2)
             NavigationStack(path: $settingsPath){
                 SettingsView()
             }
+            .toolbarBackground(.hidden, for: .navigationBar)
                 .tabItem {
                     Label("Settings", systemImage: "gear")
+                        .foregroundColor(ThemeManager.shared.currentTheme.textColor)
                 }
                 .tag(3)
             
         }
+        .tint(ThemeManager.shared.currentTheme.primaryColor)
         
     }
 }

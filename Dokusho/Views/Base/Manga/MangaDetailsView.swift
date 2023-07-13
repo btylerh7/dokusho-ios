@@ -52,7 +52,10 @@ struct MangaDetailsView: View {
                 }
                 
             }
+            .listRowBackground(ThemeManager.shared.currentTheme.listBackgroundColor)
         }
+        .scrollContentBackground(.hidden)
+        .background(ThemeManager.shared.currentTheme.secondaryColor)
         .listStyle(.insetGrouped)
         .onAppear {
             viewModel.getMangaChapters(manga: manga, source: SourceManager.shared.getSourceFromId(sourceId: manga.sourceId))

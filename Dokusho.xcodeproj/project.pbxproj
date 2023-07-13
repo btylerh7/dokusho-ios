@@ -86,6 +86,7 @@
 		5BD1DFAA29FDD44600514E49 /* TextReaderViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BD1DFA929FDD44600514E49 /* TextReaderViewModel.swift */; };
 		5BD1DFAC29FE98F600514E49 /* TextPagedReaderViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BD1DFAB29FE98F600514E49 /* TextPagedReaderViewController.swift */; };
 		5BD1DFAE29FE995000514E49 /* TextSinglePageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BD1DFAD29FE995000514E49 /* TextSinglePageViewController.swift */; };
+		5BDEE3A32A564E7D00279CB4 /* ThemeManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BDEE3A22A564E7D00279CB4 /* ThemeManager.swift */; };
 		5BE33EAF2A2BFE6C00CDE6C3 /* CategoryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BE33EAE2A2BFE6C00CDE6C3 /* CategoryView.swift */; };
 		5BE33EB12A2C03DE00CDE6C3 /* MainTabBarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BE33EB02A2C03DE00CDE6C3 /* MainTabBarView.swift */; };
 		5BE33EB32A2C049F00CDE6C3 /* LibraryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BE33EB22A2C049F00CDE6C3 /* LibraryView.swift */; };
@@ -169,6 +170,7 @@
 		5BD1DFA929FDD44600514E49 /* TextReaderViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextReaderViewModel.swift; sourceTree = "<group>"; };
 		5BD1DFAB29FE98F600514E49 /* TextPagedReaderViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextPagedReaderViewController.swift; sourceTree = "<group>"; };
 		5BD1DFAD29FE995000514E49 /* TextSinglePageViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextSinglePageViewController.swift; sourceTree = "<group>"; };
+		5BDEE3A22A564E7D00279CB4 /* ThemeManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThemeManager.swift; sourceTree = "<group>"; };
 		5BE33EAE2A2BFE6C00CDE6C3 /* CategoryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryView.swift; sourceTree = "<group>"; };
 		5BE33EB02A2C03DE00CDE6C3 /* MainTabBarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainTabBarView.swift; sourceTree = "<group>"; };
 		5BE33EB22A2C049F00CDE6C3 /* LibraryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LibraryView.swift; sourceTree = "<group>"; };
@@ -222,20 +224,20 @@
 		5B1456BC2A1135A000399452 /* KomgaAPI */ = {
 			isa = PBXGroup;
 			children = (
-				5B1456C22A1160A000399452 /* New Group */,
+				5B1456C22A1160A000399452 /* ResponseModels */,
 				5B1456BD2A1135B700399452 /* KomgaService.swift */,
 				5B1456BF2A1135C100399452 /* KomgaParser.swift */,
 			);
 			path = KomgaAPI;
 			sourceTree = "<group>";
 		};
-		5B1456C22A1160A000399452 /* New Group */ = {
+		5B1456C22A1160A000399452 /* ResponseModels */ = {
 			isa = PBXGroup;
 			children = (
 				5B1456C32A1160CD00399452 /* KomgaResponseTypes.swift */,
 				5B1456C52A12DE3E00399452 /* KomgaResponseTypesV2.swift */,
 			);
-			path = "New Group";
+			path = ResponseModels;
 			sourceTree = "<group>";
 		};
 		5B51303429DB2B9700E88A49 /* MangaLoveAPI */ = {
@@ -349,6 +351,7 @@
 				5B7EFCED29D52F1E00A1385A /* SourceAPIManager.swift */,
 				5B7EFD0529D6021100A1385A /* ImageLoader.swift */,
 				5B9E467E29E26E23006FCE0A /* OCRManager.swift */,
+				5BDEE3A22A564E7D00279CB4 /* ThemeManager.swift */,
 			);
 			path = Managers;
 			sourceTree = "<group>";
@@ -613,6 +616,7 @@
 				5BE33EB52A2C150B00CDE6C3 /* SourcesView.swift in Sources */,
 				5B7EFCF729D539A600A1385A /* UIViewExtension.swift in Sources */,
 				5B7EFCFD29D5E56300A1385A /* SourcesViewViewModel.swift in Sources */,
+				5BDEE3A32A564E7D00279CB4 /* ThemeManager.swift in Sources */,
 				5B8DBF9629E2317C00EEC632 /* SearchResultsView.swift in Sources */,
 				5B7EFCA129D51D1600A1385A /* CoreDataManager+Source.swift in Sources */,
 				5B90C85A2A2CD89400AEA731 /* SwiftUIStart.swift in Sources */,

@@ -19,8 +19,12 @@ struct SourcesView: View {
         List(viewModel.sources, id:\.self) {source in
             NavigationLink(value: source) {
                 Text(source.sourceTitle)
+                    .foregroundColor(ThemeManager.shared.currentTheme.textColor)
             }
+            .listRowBackground(ThemeManager.shared.currentTheme.listBackgroundColor)
         }
+        .scrollContentBackground(.hidden)
+        .background(ThemeManager.shared.currentTheme.secondaryColor)
         .navigationTitle("Sources")
         .navigationDestination(for: Source.self) { source in
             SingleSourceView(source: source)
