@@ -18,6 +18,8 @@
 		5B1456C02A1135C100399452 /* KomgaParser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B1456BF2A1135C100399452 /* KomgaParser.swift */; };
 		5B1456C42A1160CD00399452 /* KomgaResponseTypes.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B1456C32A1160CD00399452 /* KomgaResponseTypes.swift */; };
 		5B1456C62A12DE3E00399452 /* KomgaResponseTypesV2.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B1456C52A12DE3E00399452 /* KomgaResponseTypesV2.swift */; };
+		5B4AFE732A79A29A00EF5269 /* AllCollections.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B4AFE722A79A29A00EF5269 /* AllCollections.swift */; };
+		5B4AFE752A79BB9500EF5269 /* KomgaCategorySelector.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B4AFE742A79BB9500EF5269 /* KomgaCategorySelector.swift */; };
 		5B51302C29D93A2600E88A49 /* MangaChapterTableViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B51302B29D93A2600E88A49 /* MangaChapterTableViewModel.swift */; };
 		5B51303629DB2BAA00E88A49 /* MangaLoveService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B51303529DB2BAA00E88A49 /* MangaLoveService.swift */; };
 		5B6986242A40A82F004DE7D5 /* ImageZoomView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B6986232A40A82F004DE7D5 /* ImageZoomView.swift */; };
@@ -71,6 +73,8 @@
 		5B7EFD0629D6021100A1385A /* ImageLoader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B7EFD0529D6021100A1385A /* ImageLoader.swift */; };
 		5B7EFD0C29D66B5F00A1385A /* MangaDetailsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B7EFD0B29D66B5F00A1385A /* MangaDetailsViewModel.swift */; };
 		5B7EFD0E29D68D6C00A1385A /* ObservableItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B7EFD0D29D68D6C00A1385A /* ObservableItem.swift */; };
+		5B831B6A2A6321FE00670E6D /* UIKitReaderViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B831B692A6321FE00670E6D /* UIKitReaderViewModel.swift */; };
+		5B831B742A64B76E00670E6D /* ScannedTextView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B831B732A64B76E00670E6D /* ScannedTextView.swift */; };
 		5B8DBF7829DD203800EEC632 /* ReaderViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B8DBF7729DD203800EEC632 /* ReaderViewModel.swift */; };
 		5B8DBF8229DF4E5500EEC632 /* CategoryFilterViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B8DBF8129DF4E5500EEC632 /* CategoryFilterViewModel.swift */; };
 		5B8DBF8429DF529100EEC632 /* LibraryViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B8DBF8329DF529100EEC632 /* LibraryViewModel.swift */; };
@@ -87,11 +91,39 @@
 		5BD1DFAC29FE98F600514E49 /* TextPagedReaderViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BD1DFAB29FE98F600514E49 /* TextPagedReaderViewController.swift */; };
 		5BD1DFAE29FE995000514E49 /* TextSinglePageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BD1DFAD29FE995000514E49 /* TextSinglePageViewController.swift */; };
 		5BDEE3A32A564E7D00279CB4 /* ThemeManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BDEE3A22A564E7D00279CB4 /* ThemeManager.swift */; };
+		5BE167392A76C24100124507 /* Komgav2APIService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BE167382A76C24100124507 /* Komgav2APIService.swift */; };
+		5BE1673B2A770D6F00124507 /* Series.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BE1673A2A770D6F00124507 /* Series.swift */; };
+		5BE1673D2A770E5700124507 /* SeriesMetadata.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BE1673C2A770E5700124507 /* SeriesMetadata.swift */; };
+		5BE1673F2A770E6000124507 /* BooksMetadata.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BE1673E2A770E6000124507 /* BooksMetadata.swift */; };
+		5BE167412A770F6400124507 /* AllSeries.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BE167402A770F6400124507 /* AllSeries.swift */; };
+		5BE167432A77136A00124507 /* Books.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BE167422A77136A00124507 /* Books.swift */; };
+		5BE167452A7713A700124507 /* Book.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BE167442A7713A700124507 /* Book.swift */; };
+		5BE167472A7713C400124507 /* Author.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BE167462A7713C400124507 /* Author.swift */; };
+		5BE167492A77142B00124507 /* ReadProgress.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BE167482A77142B00124507 /* ReadProgress.swift */; };
+		5BE1674B2A77147300124507 /* BookMetadata.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BE1674A2A77147300124507 /* BookMetadata.swift */; };
+		5BE1674D2A7714BF00124507 /* Media.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BE1674C2A7714BF00124507 /* Media.swift */; };
+		5BE167502A771A8000124507 /* LibraryViewViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BE1674F2A771A8000124507 /* LibraryViewViewModel.swift */; };
+		5BE167522A771BD900124507 /* KomgaLibraryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BE167512A771BD900124507 /* KomgaLibraryView.swift */; };
+		5BE167542A771F1300124507 /* NewMangaTileView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BE167532A771F1300124507 /* NewMangaTileView.swift */; };
+		5BE167572A77298C00124507 /* KomgaSeriesDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BE167562A77298C00124507 /* KomgaSeriesDetailView.swift */; };
+		5BE167592A772A6500124507 /* KomgaLazyImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BE167582A772A6500124507 /* KomgaLazyImage.swift */; };
+		5BE1675B2A772FD700124507 /* BookTileView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BE1675A2A772FD700124507 /* BookTileView.swift */; };
+		5BE1675D2A7731B400124507 /* KomgaSeriesDetailViewViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BE1675C2A7731B400124507 /* KomgaSeriesDetailViewViewModel.swift */; };
+		5BE1675F2A77340B00124507 /* KomgaSeriesDetailHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BE1675E2A77340B00124507 /* KomgaSeriesDetailHeaderView.swift */; };
+		5BE167612A7738F300124507 /* KomgaReaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BE167602A7738F300124507 /* KomgaReaderView.swift */; };
+		5BE167632A773C2100124507 /* KomgaImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BE167622A773C2100124507 /* KomgaImageView.swift */; };
 		5BE33EAF2A2BFE6C00CDE6C3 /* CategoryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BE33EAE2A2BFE6C00CDE6C3 /* CategoryView.swift */; };
 		5BE33EB12A2C03DE00CDE6C3 /* MainTabBarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BE33EB02A2C03DE00CDE6C3 /* MainTabBarView.swift */; };
 		5BE33EB32A2C049F00CDE6C3 /* LibraryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BE33EB22A2C049F00CDE6C3 /* LibraryView.swift */; };
 		5BE33EB52A2C150B00CDE6C3 /* SourcesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BE33EB42A2C150B00CDE6C3 /* SourcesView.swift */; };
 		5BE33EB72A2C183300CDE6C3 /* SingleSourceView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BE33EB62A2C183300CDE6C3 /* SingleSourceView.swift */; };
+		5BFD877F2C05585100788C43 /* HistoryItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BFD877E2C05585100788C43 /* HistoryItem.swift */; };
+		5BFD87812C055D7000788C43 /* ChapterItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BFD87802C055D7000788C43 /* ChapterItem.swift */; };
+		5BFD87832C055DE900788C43 /* MangaItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BFD87822C055DE900788C43 /* MangaItem.swift */; };
+		5BFD87852C055F8B00788C43 /* LibraryItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BFD87842C055F8B00788C43 /* LibraryItem.swift */; };
+		5BFD87872C055FE700788C43 /* CategoryItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BFD87862C055FE700788C43 /* CategoryItem.swift */; };
+		5BFD87892C06986A00788C43 /* CategoryContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BFD87882C06986900788C43 /* CategoryContainer.swift */; };
+		5BFD878D2C06D45C00788C43 /* AppRegistry.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BFD878C2C06D45C00788C43 /* AppRegistry.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -107,6 +139,8 @@
 		5B1456BF2A1135C100399452 /* KomgaParser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KomgaParser.swift; sourceTree = "<group>"; };
 		5B1456C32A1160CD00399452 /* KomgaResponseTypes.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KomgaResponseTypes.swift; sourceTree = "<group>"; };
 		5B1456C52A12DE3E00399452 /* KomgaResponseTypesV2.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KomgaResponseTypesV2.swift; sourceTree = "<group>"; };
+		5B4AFE722A79A29A00EF5269 /* AllCollections.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AllCollections.swift; sourceTree = "<group>"; };
+		5B4AFE742A79BB9500EF5269 /* KomgaCategorySelector.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KomgaCategorySelector.swift; sourceTree = "<group>"; };
 		5B51302B29D93A2600E88A49 /* MangaChapterTableViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MangaChapterTableViewModel.swift; sourceTree = "<group>"; };
 		5B51303529DB2BAA00E88A49 /* MangaLoveService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MangaLoveService.swift; sourceTree = "<group>"; };
 		5B6986232A40A82F004DE7D5 /* ImageZoomView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = ImageZoomView.swift; path = ../ImageZoomView.swift; sourceTree = "<group>"; };
@@ -154,6 +188,8 @@
 		5B7EFD0529D6021100A1385A /* ImageLoader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageLoader.swift; sourceTree = "<group>"; };
 		5B7EFD0B29D66B5F00A1385A /* MangaDetailsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MangaDetailsViewModel.swift; sourceTree = "<group>"; };
 		5B7EFD0D29D68D6C00A1385A /* ObservableItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ObservableItem.swift; sourceTree = "<group>"; };
+		5B831B692A6321FE00670E6D /* UIKitReaderViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIKitReaderViewModel.swift; sourceTree = "<group>"; };
+		5B831B732A64B76E00670E6D /* ScannedTextView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScannedTextView.swift; sourceTree = "<group>"; };
 		5B8C615A29EB36D90079142F /* Dokusho.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Dokusho.entitlements; sourceTree = "<group>"; };
 		5B8DBF7729DD203800EEC632 /* ReaderViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReaderViewModel.swift; sourceTree = "<group>"; };
 		5B8DBF8129DF4E5500EEC632 /* CategoryFilterViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryFilterViewModel.swift; sourceTree = "<group>"; };
@@ -171,11 +207,39 @@
 		5BD1DFAB29FE98F600514E49 /* TextPagedReaderViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextPagedReaderViewController.swift; sourceTree = "<group>"; };
 		5BD1DFAD29FE995000514E49 /* TextSinglePageViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextSinglePageViewController.swift; sourceTree = "<group>"; };
 		5BDEE3A22A564E7D00279CB4 /* ThemeManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThemeManager.swift; sourceTree = "<group>"; };
+		5BE167382A76C24100124507 /* Komgav2APIService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Komgav2APIService.swift; sourceTree = "<group>"; };
+		5BE1673A2A770D6F00124507 /* Series.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Series.swift; sourceTree = "<group>"; };
+		5BE1673C2A770E5700124507 /* SeriesMetadata.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SeriesMetadata.swift; sourceTree = "<group>"; };
+		5BE1673E2A770E6000124507 /* BooksMetadata.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BooksMetadata.swift; sourceTree = "<group>"; };
+		5BE167402A770F6400124507 /* AllSeries.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AllSeries.swift; sourceTree = "<group>"; };
+		5BE167422A77136A00124507 /* Books.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Books.swift; sourceTree = "<group>"; };
+		5BE167442A7713A700124507 /* Book.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Book.swift; sourceTree = "<group>"; };
+		5BE167462A7713C400124507 /* Author.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Author.swift; sourceTree = "<group>"; };
+		5BE167482A77142B00124507 /* ReadProgress.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReadProgress.swift; sourceTree = "<group>"; };
+		5BE1674A2A77147300124507 /* BookMetadata.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BookMetadata.swift; sourceTree = "<group>"; };
+		5BE1674C2A7714BF00124507 /* Media.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Media.swift; sourceTree = "<group>"; };
+		5BE1674F2A771A8000124507 /* LibraryViewViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LibraryViewViewModel.swift; sourceTree = "<group>"; };
+		5BE167512A771BD900124507 /* KomgaLibraryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KomgaLibraryView.swift; sourceTree = "<group>"; };
+		5BE167532A771F1300124507 /* NewMangaTileView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewMangaTileView.swift; sourceTree = "<group>"; };
+		5BE167562A77298C00124507 /* KomgaSeriesDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KomgaSeriesDetailView.swift; sourceTree = "<group>"; };
+		5BE167582A772A6500124507 /* KomgaLazyImage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KomgaLazyImage.swift; sourceTree = "<group>"; };
+		5BE1675A2A772FD700124507 /* BookTileView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BookTileView.swift; sourceTree = "<group>"; };
+		5BE1675C2A7731B400124507 /* KomgaSeriesDetailViewViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KomgaSeriesDetailViewViewModel.swift; sourceTree = "<group>"; };
+		5BE1675E2A77340B00124507 /* KomgaSeriesDetailHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KomgaSeriesDetailHeaderView.swift; sourceTree = "<group>"; };
+		5BE167602A7738F300124507 /* KomgaReaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KomgaReaderView.swift; sourceTree = "<group>"; };
+		5BE167622A773C2100124507 /* KomgaImageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KomgaImageView.swift; sourceTree = "<group>"; };
 		5BE33EAE2A2BFE6C00CDE6C3 /* CategoryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryView.swift; sourceTree = "<group>"; };
 		5BE33EB02A2C03DE00CDE6C3 /* MainTabBarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainTabBarView.swift; sourceTree = "<group>"; };
 		5BE33EB22A2C049F00CDE6C3 /* LibraryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LibraryView.swift; sourceTree = "<group>"; };
 		5BE33EB42A2C150B00CDE6C3 /* SourcesView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SourcesView.swift; sourceTree = "<group>"; };
 		5BE33EB62A2C183300CDE6C3 /* SingleSourceView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = SingleSourceView.swift; path = OnlineSources/SingleSourceView.swift; sourceTree = "<group>"; };
+		5BFD877E2C05585100788C43 /* HistoryItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HistoryItem.swift; sourceTree = "<group>"; };
+		5BFD87802C055D7000788C43 /* ChapterItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChapterItem.swift; sourceTree = "<group>"; };
+		5BFD87822C055DE900788C43 /* MangaItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MangaItem.swift; sourceTree = "<group>"; };
+		5BFD87842C055F8B00788C43 /* LibraryItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LibraryItem.swift; sourceTree = "<group>"; };
+		5BFD87862C055FE700788C43 /* CategoryItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryItem.swift; sourceTree = "<group>"; };
+		5BFD87882C06986900788C43 /* CategoryContainer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryContainer.swift; sourceTree = "<group>"; };
+		5BFD878C2C06D45C00788C43 /* AppRegistry.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppRegistry.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -210,6 +274,7 @@
 			isa = PBXGroup;
 			children = (
 				5B6986232A40A82F004DE7D5 /* ImageZoomView.swift */,
+				5B831B732A64B76E00670E6D /* ScannedTextView.swift */,
 			);
 			path = ImageSource;
 			sourceTree = "<group>";
@@ -292,6 +357,7 @@
 				5B7EFC7729D5074600A1385A /* LaunchScreen.storyboard */,
 				5B7EFC7529D5074600A1385A /* Assets.xcassets */,
 				5B90C8592A2CD89400AEA731 /* SwiftUIStart.swift */,
+				5BFD878C2C06D45C00788C43 /* AppRegistry.swift */,
 			);
 			path = Resources;
 			sourceTree = "<group>";
@@ -299,6 +365,7 @@
 		5B7EFC8B29D514B300A1385A /* Base */ = {
 			isa = PBXGroup;
 			children = (
+				5BE167552A77292800124507 /* KomgaOnlyRewrite */,
 				5B8DBF7229DCE9AF00EEC632 /* Reader */,
 				5B7EFD0029D5E97900A1385A /* Manga */,
 				5B126C2729E497F900088F9C /* MangaTileView.swift */,
@@ -346,6 +413,7 @@
 		5B7EFC9029D5181300A1385A /* Managers */ = {
 			isa = PBXGroup;
 			children = (
+				5BFD877D2C05583500788C43 /* SwiftData */,
 				5B7EFC9529D51A0900A1385A /* CoreData */,
 				5B7EFC9329D519B400A1385A /* SourceManager.swift */,
 				5B7EFCED29D52F1E00A1385A /* SourceAPIManager.swift */,
@@ -359,6 +427,7 @@
 		5B7EFC9129D5181C00A1385A /* ViewModels */ = {
 			isa = PBXGroup;
 			children = (
+				5BE1674E2A771A5300124507 /* V2 */,
 				5B7EFCFC29D5E56300A1385A /* SourcesViewViewModel.swift */,
 				5B7EFD0329D5EA1500A1385A /* BrowseViewModel.swift */,
 				5B7EFD0B29D66B5F00A1385A /* MangaDetailsViewModel.swift */,
@@ -368,6 +437,7 @@
 				5B8DBF8329DF529100EEC632 /* LibraryViewModel.swift */,
 				5B8DBF9729E2368F00EEC632 /* SearchViewModel.swift */,
 				5BD1DFA929FDD44600514E49 /* TextReaderViewModel.swift */,
+				5B831B692A6321FE00670E6D /* UIKitReaderViewModel.swift */,
 			);
 			path = ViewModels;
 			sourceTree = "<group>";
@@ -375,6 +445,7 @@
 		5B7EFC9229D5186000A1385A /* SourceAPI */ = {
 			isa = PBXGroup;
 			children = (
+				5B831B602A60BA3A00670E6D /* KomgaAPIv2 */,
 				5B1456BC2A1135A000399452 /* KomgaAPI */,
 				5B8DBF8B29E11AD600EEC632 /* Manga1000API */,
 				5B51303429DB2B9700E88A49 /* MangaLoveAPI */,
@@ -494,6 +565,15 @@
 			path = Manga;
 			sourceTree = "<group>";
 		};
+		5B831B602A60BA3A00670E6D /* KomgaAPIv2 */ = {
+			isa = PBXGroup;
+			children = (
+				5BE167372A76C22A00124507 /* ReturnTypes */,
+				5BE167382A76C24100124507 /* Komgav2APIService.swift */,
+			);
+			path = KomgaAPIv2;
+			sourceTree = "<group>";
+		};
 		5B8DBF7229DCE9AF00EEC632 /* Reader */ = {
 			isa = PBXGroup;
 			children = (
@@ -513,6 +593,62 @@
 				5B8DBF8E29E11BBC00EEC632 /* Manga1000Service.swift */,
 			);
 			path = Manga1000API;
+			sourceTree = "<group>";
+		};
+		5BE167372A76C22A00124507 /* ReturnTypes */ = {
+			isa = PBXGroup;
+			children = (
+				5BE1673A2A770D6F00124507 /* Series.swift */,
+				5BE1673C2A770E5700124507 /* SeriesMetadata.swift */,
+				5BE1673E2A770E6000124507 /* BooksMetadata.swift */,
+				5BE167402A770F6400124507 /* AllSeries.swift */,
+				5BE167422A77136A00124507 /* Books.swift */,
+				5BE167442A7713A700124507 /* Book.swift */,
+				5BE167462A7713C400124507 /* Author.swift */,
+				5BE167482A77142B00124507 /* ReadProgress.swift */,
+				5BE1674A2A77147300124507 /* BookMetadata.swift */,
+				5BE1674C2A7714BF00124507 /* Media.swift */,
+				5B4AFE722A79A29A00EF5269 /* AllCollections.swift */,
+			);
+			path = ReturnTypes;
+			sourceTree = "<group>";
+		};
+		5BE1674E2A771A5300124507 /* V2 */ = {
+			isa = PBXGroup;
+			children = (
+				5BE1674F2A771A8000124507 /* LibraryViewViewModel.swift */,
+				5BE1675C2A7731B400124507 /* KomgaSeriesDetailViewViewModel.swift */,
+			);
+			path = V2;
+			sourceTree = "<group>";
+		};
+		5BE167552A77292800124507 /* KomgaOnlyRewrite */ = {
+			isa = PBXGroup;
+			children = (
+				5BE167512A771BD900124507 /* KomgaLibraryView.swift */,
+				5BE167532A771F1300124507 /* NewMangaTileView.swift */,
+				5BE167562A77298C00124507 /* KomgaSeriesDetailView.swift */,
+				5BE167582A772A6500124507 /* KomgaLazyImage.swift */,
+				5BE1675A2A772FD700124507 /* BookTileView.swift */,
+				5BE1675E2A77340B00124507 /* KomgaSeriesDetailHeaderView.swift */,
+				5BE167602A7738F300124507 /* KomgaReaderView.swift */,
+				5BE167622A773C2100124507 /* KomgaImageView.swift */,
+				5B4AFE742A79BB9500EF5269 /* KomgaCategorySelector.swift */,
+			);
+			path = KomgaOnlyRewrite;
+			sourceTree = "<group>";
+		};
+		5BFD877D2C05583500788C43 /* SwiftData */ = {
+			isa = PBXGroup;
+			children = (
+				5BFD877E2C05585100788C43 /* HistoryItem.swift */,
+				5BFD87802C055D7000788C43 /* ChapterItem.swift */,
+				5BFD87822C055DE900788C43 /* MangaItem.swift */,
+				5BFD87842C055F8B00788C43 /* LibraryItem.swift */,
+				5BFD87862C055FE700788C43 /* CategoryItem.swift */,
+				5BFD87882C06986900788C43 /* CategoryContainer.swift */,
+			);
+			path = SwiftData;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -601,6 +737,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				5BE167542A771F1300124507 /* NewMangaTileView.swift in Sources */,
 				5B7748BA2A42871D0022EAF8 /* ZoomImageReaderView.swift in Sources */,
 				5B51303629DB2BAA00E88A49 /* MangaLoveService.swift in Sources */,
 				5B8DBF7829DD203800EEC632 /* ReaderViewModel.swift in Sources */,
@@ -611,8 +748,12 @@
 				5B8DBF8429DF529100EEC632 /* LibraryViewModel.swift in Sources */,
 				5B7EFD0E29D68D6C00A1385A /* ObservableItem.swift in Sources */,
 				5B7EFCD229D5274E00A1385A /* Chapter.swift in Sources */,
+				5B4AFE732A79A29A00EF5269 /* AllCollections.swift in Sources */,
+				5B4AFE752A79BB9500EF5269 /* KomgaCategorySelector.swift in Sources */,
+				5BE167492A77142B00124507 /* ReadProgress.swift in Sources */,
 				5BE33EB32A2C049F00CDE6C3 /* LibraryView.swift in Sources */,
 				5B7EFCD429D5276500A1385A /* ChapterDetails.swift in Sources */,
+				5BFD87812C055D7000788C43 /* ChapterItem.swift in Sources */,
 				5BE33EB52A2C150B00CDE6C3 /* SourcesView.swift in Sources */,
 				5B7EFCF729D539A600A1385A /* UIViewExtension.swift in Sources */,
 				5B7EFCFD29D5E56300A1385A /* SourcesViewViewModel.swift in Sources */,
@@ -622,22 +763,31 @@
 				5B90C85A2A2CD89400AEA731 /* SwiftUIStart.swift in Sources */,
 				5B7EFCAB29D5212700A1385A /* MonogataryService.swift in Sources */,
 				5B7EFCC929D526D900A1385A /* CategoryObject.swift in Sources */,
+				5BE167592A772A6500124507 /* KomgaLazyImage.swift in Sources */,
 				5B126C2829E497F900088F9C /* MangaTileView.swift in Sources */,
 				5B7EFCCC29D5270200A1385A /* Source.swift in Sources */,
+				5BFD87832C055DE900788C43 /* MangaItem.swift in Sources */,
+				5BE167522A771BD900124507 /* KomgaLibraryView.swift in Sources */,
+				5BFD877F2C05585100788C43 /* HistoryItem.swift in Sources */,
 				5BE33EAF2A2BFE6C00CDE6C3 /* CategoryView.swift in Sources */,
+				5BE167432A77136A00124507 /* Books.swift in Sources */,
 				5B8DBF8D29E11B0B00EEC632 /* Manga1000Parser.swift in Sources */,
 				5BD1DFAE29FE995000514E49 /* TextSinglePageViewController.swift in Sources */,
 				5B1456BE2A1135B700399452 /* KomgaService.swift in Sources */,
 				5B7EFCB429D524F600A1385A /* MonogataryStoryDetails.swift in Sources */,
 				5B7EFCB629D5251700A1385A /* MonogataryChapterDetails.swift in Sources */,
 				5B7EFCA829D520DF00A1385A /* RawkumaParser.swift in Sources */,
+				5BE1675D2A7731B400124507 /* KomgaSeriesDetailViewViewModel.swift in Sources */,
 				5B8DBF8829E0B65B00EEC632 /* MangaLoveParser.swift in Sources */,
 				5B7EFCB029D524BA00A1385A /* MonogataryAPIStoryTile.swift in Sources */,
+				5BE167452A7713A700124507 /* Book.swift in Sources */,
 				5B7EFCA329D51D9D00A1385A /* CoreDataManager+Category.swift in Sources */,
 				5B7EFD0C29D66B5F00A1385A /* MangaDetailsViewModel.swift in Sources */,
+				5BE1673B2A770D6F00124507 /* Series.swift in Sources */,
 				5BD1DFAC29FE98F600514E49 /* TextPagedReaderViewController.swift in Sources */,
 				5B7EFC9429D519B400A1385A /* SourceManager.swift in Sources */,
 				5B1456C62A12DE3E00399452 /* KomgaResponseTypesV2.swift in Sources */,
+				5BE167412A770F6400124507 /* AllSeries.swift in Sources */,
 				5B7EFCAD29D5229F00A1385A /* MonogataryParser.swift in Sources */,
 				5B7EFCB229D524DC00A1385A /* MonogataryHomepageResults.swift in Sources */,
 				5B7EFC9D29D51C4000A1385A /* CoreDataManager+Chapter.swift in Sources */,
@@ -645,32 +795,50 @@
 				5B7EFCD629D5278C00A1385A /* LibraryEntry.swift in Sources */,
 				5B7EFCD929D527E800A1385A /* DokushoDataModel.xcdatamodeld in Sources */,
 				5B126C2A29E4C16500088F9C /* SettingsView.swift in Sources */,
+				5BFD878D2C06D45C00788C43 /* AppRegistry.swift in Sources */,
 				5B0880012A182DD8009EF3F2 /* MangaDetailsHeaderView.swift in Sources */,
 				5B7EFCC329D5267B00A1385A /* ChapterObject.swift in Sources */,
+				5BFD87852C055F8B00788C43 /* LibraryItem.swift in Sources */,
+				5B831B6A2A6321FE00670E6D /* UIKitReaderViewModel.swift in Sources */,
 				5B7EFC9729D51A1F00A1385A /* CoreDataManager.swift in Sources */,
 				5B126C2E29E4D53A00088F9C /* AddToCategoryView.swift in Sources */,
+				5B831B742A64B76E00670E6D /* ScannedTextView.swift in Sources */,
 				5BE33EB72A2C183300CDE6C3 /* SingleSourceView.swift in Sources */,
 				5BD1DFA629FDCE1A00514E49 /* TextReaderViewController.swift in Sources */,
+				5BE1674D2A7714BF00124507 /* Media.swift in Sources */,
+				5BE167472A7713C400124507 /* Author.swift in Sources */,
 				5B7EFCD029D5273900A1385A /* MangaTile.swift in Sources */,
+				5BFD87872C055FE700788C43 /* CategoryItem.swift in Sources */,
+				5BE167632A773C2100124507 /* KomgaImageView.swift in Sources */,
 				5B7EFCEC29D52EC900A1385A /* APIServiceProtocol.swift in Sources */,
 				5B7EFCA629D5208100A1385A /* RawkumaService.swift in Sources */,
 				5B8DBF8229DF4E5500EEC632 /* CategoryFilterViewModel.swift in Sources */,
+				5BE167572A77298C00124507 /* KomgaSeriesDetailView.swift in Sources */,
+				5BE1673F2A770E6000124507 /* BooksMetadata.swift in Sources */,
 				5BE33EB12A2C03DE00CDE6C3 /* MainTabBarView.swift in Sources */,
 				5B8DBF8F29E11BBC00EEC632 /* Manga1000Service.swift in Sources */,
 				5B7EFC9B29D51B5C00A1385A /* CoreDataManager+Manga.swift in Sources */,
 				5B51302C29D93A2600E88A49 /* MangaChapterTableViewModel.swift in Sources */,
 				5B7EFCCE29D5271F00A1385A /* MangaDetails.swift in Sources */,
+				5BE1673D2A770E5700124507 /* SeriesMetadata.swift in Sources */,
+				5BE1675F2A77340B00124507 /* KomgaSeriesDetailHeaderView.swift in Sources */,
 				5B7EFCEE29D52F1E00A1385A /* SourceAPIManager.swift in Sources */,
 				5B7EFCC529D5269E00A1385A /* SourceObject.swift in Sources */,
 				5B7EFC9F29D51CAD00A1385A /* CoreDataManager+LibraryEntry.swift in Sources */,
 				5B1456C42A1160CD00399452 /* KomgaResponseTypes.swift in Sources */,
+				5BE1674B2A77147300124507 /* BookMetadata.swift in Sources */,
 				5B7EFCC729D526BB00A1385A /* LibraryEntryObject.swift in Sources */,
 				5B8DBF9829E2368F00EEC632 /* SearchViewModel.swift in Sources */,
+				5BE167502A771A8000124507 /* LibraryViewViewModel.swift in Sources */,
 				5B7EFD0429D5EA1500A1385A /* BrowseViewModel.swift in Sources */,
+				5BE1675B2A772FD700124507 /* BookTileView.swift in Sources */,
+				5BE167392A76C24100124507 /* Komgav2APIService.swift in Sources */,
 				5B6986242A40A82F004DE7D5 /* ImageZoomView.swift in Sources */,
 				5B7748BC2A429B890022EAF8 /* CropImageViewRepresentable.swift in Sources */,
 				5B7EFCBF29D5262100A1385A /* HistoryObject.swift in Sources */,
 				5B12E1822A5233440070A87C /* Color.swift in Sources */,
+				5BE167612A7738F300124507 /* KomgaReaderView.swift in Sources */,
+				5BFD87892C06986A00788C43 /* CategoryContainer.swift in Sources */,
 				5B7EFCBB29D5259B00A1385A /* Manga18FXService.swift in Sources */,
 				5B7EFC9929D51B0800A1385A /* CoreDataManager+History.swift in Sources */,
 				5B90C85F2A2D796B00AEA731 /* SearchView.swift in Sources */,
@@ -744,7 +912,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 16.2;
+				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
 				ONLY_ACTIVE_ARCH = YES;
@@ -798,7 +966,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 16.2;
+				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
 				SDKROOT = iphoneos;
@@ -826,6 +994,7 @@
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
+				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -858,6 +1027,7 @@
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
+				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",

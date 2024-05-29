@@ -1,32 +1,45 @@
 //
-//  ImageZoomView.swift
+//  KomgaImageView.swift
 //  Dokusho
 //
-//  Created by Tyler Baker on 6/19/23.
+//  Created by Tyler Baker on 7/30/23.
 //
 
 import SwiftUI
 import NukeUI
 
-struct ImageZoomView: View {
-    let testUrl = URL(string: "https://kumacdn.club/wp-content/uploads/O/Oshi%20no%20Ko/Chapter%2001/001.jpg")
-    let testUrl2 = URL(string: "https://kumacdn.club/wp-content/uploads/O/Oshi%20no%20Ko/Chapter%2001/002.jpg")
-    
-    let imageUrl: String
+struct KomgaImageView: View {
+    @Binding var scannedText: String
+    @State var bookId: String
+    @State var page: Int
+    @State var url: URL? = nil
+
     @State var isZoomed = false
     @State var scale = 1.0
     @State var currentPosition: CGSize = .zero
     @State var newPosition: CGSize = .zero
     @State var isPresentingScannedTextView = false
     @State var isShowingCropView = false
-    @Binding var scannedText: String
+    
     @State var imageToScan = UIImage()
     @State var isDisplayingOverlay = true
     
     var body: some View {
+        let tapGesture = TapGesture(count: 2)
+            .onEnded({ _ in
+                withAnimation {
+                    isZoomed = !isZoomed
+                    scale = isZoomed ? 2.0 : 1.0
+                    if !isZoomed {
+                        currentPosition = .zero
+                        newPosition = .zero
+                    }
+                }
+            })
+        
         VStack {
             GeometryReader { geo in
-                LazyImage(url: URL(string: imageUrl)) { state in
+                LazyImage(url: url) { state in
                     if state.isLoading {ProgressView()}
                     if state.image != nil {
                         state.image!
@@ -34,19 +47,7 @@ struct ImageZoomView: View {
                             .aspectRatio(contentMode: .fit)
                             .scaleEffect(scale)
                             .offset(x: currentPosition.width, y: currentPosition.height)
-                            .gesture(
-                                TapGesture(count: 2)
-                                    .onEnded({ _ in
-                                        withAnimation {
-                                            isZoomed = !isZoomed
-                                            scale = isZoomed ? 2.0 : 1.0
-                                            if !isZoomed {
-                                                currentPosition = .zero
-                                                newPosition = .zero
-                                            }
-                                        }
-                                    })
-                            )
+                            .gesture(tapGesture)
                             .gesture(
                                 LongPressGesture(minimumDuration: 1.5)
                                     .onChanged({ _ in
@@ -73,7 +74,7 @@ struct ImageZoomView: View {
                                     }
                                 : nil
                             )
-
+                        
                     }
                 }
                 .frame(width: geo.size.width, height: geo.size.height - 30)
@@ -83,12 +84,9 @@ struct ImageZoomView: View {
         .fullScreenCover(isPresented: $isShowingCropView) {
             CropImageViewControllerRepresentable(scannedText: $scannedText, image: imageToScan)
         }
-//        .onChange(of: scannedText, perform: { newValue in
-////            isPresentingScannedTextView = true
-//            if newValue != "" {
-//                isDisplayingOverlay = true
-//            }
-//        })
+        .task {
+            await makeUrl()
+        }
         .sheet(isPresented: $isPresentingScannedTextView) {
             VStack(spacing: 10) {
                 
@@ -105,7 +103,7 @@ struct ImageZoomView: View {
     }
 }
 
-extension ImageZoomView {
+extension KomgaImageView {
     func checkWidthAndHeight(value: CGSize, geo: CGSize) {
         var updatedWidth = value.width + self.newPosition.width
         var updatedHeight = value.height + self.newPosition.height
@@ -130,16 +128,16 @@ extension ImageZoomView {
     }
 }
 
-//struct ImageZoomView_Previews: PreviewProvider {
+extension KomgaImageView {
+    func makeUrl() async {
+        guard let urlString = Komgav2APIService.shared.getBookPageUrl(bookId: bookId, page: page) else {return}
+        self.url = URL(string: urlString)
+    }
+}
+
+
+//struct KomgaImageView_Previews: PreviewProvider {
 //    static var previews: some View {
-//        @Environment(\.dismiss) var dismiss
-//        @State var hidden = false
-//        TabView {
-//            ImageZoomView(imageUrl: "https://kumacdn.club/wp-content/uploads/O/Oshi%20no%20Ko/Chapter%2001/001.jpg")
-//                .tag(0)
-//            ImageZoomView(imageUrl: "https://kumacdn.club/wp-content/uploads/O/Oshi%20no%20Ko/Chapter%2001/001.jpg")
-//                .tag(1)
-//        }
-//        .tabViewStyle(PageTabViewStyle())
+//        KomgaImageView()
 //    }
 //}

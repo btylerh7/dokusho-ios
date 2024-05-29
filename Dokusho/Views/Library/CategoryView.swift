@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import SwiftData
 
 final class CategoryViewModel: ObservableObject {
     @Published var tiles: [MangaTile] = []
@@ -19,34 +20,39 @@ final class CategoryViewModel: ObservableObject {
 }
 
 struct CategoryView: View {
+    @Environment(Theme.self) private var theme
+    @Query var tiles: [CategoryItem]
     let selectedCategory: String
-    @StateObject var viewModel = CategoryViewModel()
+    var filteredItems: [MangaTile] = []
+    init(category: String) {
+        self.selectedCategory = category
+        self.filteredItems = tiles.filter { mangaItem in
+            return mangaItem.categoryId == category
+        }.first?.libraryItems.map({ item in
+            return MangaTile(sourceId: item.sourceId, mangaId: item.mangaId, title: item.title, image: item.image)
+        }) ?? []
+    }
     let columns: [GridItem] = Array(repeating: GridItem(.flexible()), count: 2)
     var body: some View {
-        
             ScrollView {
                 LazyVGrid(columns: columns) {
-                    ForEach(viewModel.tiles, id:\.self) { tile in
+                    ForEach(filteredItems, id:\.self) { tile in
                         NavigationLink(value: tile) {
                             MangaTileView(title: tile.title, image:tile.image, sourceId: tile.sourceId)
-
                         }
                     }
                 }
                 .navigationTitle(selectedCategory)
-                .onAppear {
-                    viewModel.getTiles(selectedCategory: selectedCategory)
-                }
                 .navigationDestination(for: MangaTile.self) { tile in
                     MangaDetailsView(manga: tile)
                 }
             }
-            .background(ThemeManager.shared.currentTheme.secondaryColor)
+            .background(theme.secondaryColor)
     }
 }
 
 struct CategoryView_Previews: PreviewProvider {
     static var previews: some View {
-        CategoryView(selectedCategory: "All")
+        CategoryView(category: "All")
     }
 }

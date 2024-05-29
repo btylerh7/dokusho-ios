@@ -10,6 +10,7 @@ import NukeUI
 
 struct MangaDetailsView: View {
     let manga: MangaTile
+    @Environment(Theme.self) private var theme
     @State var isPresentingReaderView = false
     @State var selectedChapter: Chapter? = nil
     @State var chapterIterators: [ChapterIterator] = []
@@ -52,10 +53,10 @@ struct MangaDetailsView: View {
                 }
                 
             }
-            .listRowBackground(ThemeManager.shared.currentTheme.listBackgroundColor)
+            .listRowBackground(theme.listBackgroundColor)
         }
         .scrollContentBackground(.hidden)
-        .background(ThemeManager.shared.currentTheme.secondaryColor)
+        .background(theme.secondaryColor)
         .listStyle(.insetGrouped)
         .onAppear {
             viewModel.getMangaChapters(manga: manga, source: SourceManager.shared.getSourceFromId(sourceId: manga.sourceId))
@@ -77,7 +78,9 @@ struct MangaDetailsView: View {
             refreshData()
         }) {
 //            ReaderViewWrapper(chapter: selectedChapter!, source: SourceManager.shared.getSourceFromId(sourceId: manga.sourceId))
-                ZoomImageReaderView(chapter: selectedChapter!, source: SourceManager.shared.getSourceFromId(sourceId: manga.sourceId))
+//            var viewModel = UIKitReaderViewModel(currentPage: 0,  chapter: selectedChapter!, source: SourceManager.shared.getSourceFromId(sourceId: manga.sourceId))
+
+            ZoomImageReaderView(chapter: selectedChapter!, source: SourceManager.shared.getSourceFromId(sourceId: manga.sourceId))
         }
     }
 }

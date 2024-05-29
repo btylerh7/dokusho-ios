@@ -32,7 +32,7 @@
         <attribute name="sourceId" optional="YES" attributeType="String"/>
         <attribute name="title" optional="YES" attributeType="String"/>
         <relationship name="categories" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="CategoryEntry" inverseName="libraryEntries" inverseEntity="CategoryEntry"/>
-        <relationship name="manga" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="MangaEntry"/>
+        <relationship name="manga" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="MangaEntry" inverseName="libraryEntry" inverseEntity="MangaEntry"/>
     </entity>
     <entity name="MangaEntry" representedClassName=".MangaObject" syncable="YES">
         <attribute name="author" optional="YES" attributeType="String"/>
@@ -45,5 +45,6 @@
         <attribute name="url" optional="YES" attributeType="String"/>
         <relationship name="chapters" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="ChapterEntry" inverseName="manga" inverseEntity="ChapterEntry"/>
         <relationship name="history" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="HistoryEntry" inverseName="manga" inverseEntity="HistoryEntry"/>
+        <relationship name="libraryEntry" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="LibraryEntry" inverseName="manga" inverseEntity="LibraryEntry"/>
     </entity>
 </model>

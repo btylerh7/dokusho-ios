@@ -13,7 +13,7 @@ final public class SourceManager {
     var sources: [Source] = [
         Source(sourceId: "rawkuma", sourceTitle: "Rawkuma", baseUrl: "https://rawkuma.com", lang: "ja", sourceType: "image"),
         Source(sourceId: "monogatary", sourceTitle: "Monogatary", baseUrl: "https://monogatary.com", lang: "ja", sourceType: "text"),
-        Source(sourceId: "komga", sourceTitle: "Komga", baseUrl: UserDefaults.standard.object(forKey: "komga-server-address") as! String, lang: "ja", sourceType: "image")
+        Source(sourceId: "komga", sourceTitle: "Komga", baseUrl: UserDefaults.standard.object(forKey: "komga-server-address") as? String ?? "", lang: "ja", sourceType: "image")
         
     ]
     func getAllSources() -> [Source] {

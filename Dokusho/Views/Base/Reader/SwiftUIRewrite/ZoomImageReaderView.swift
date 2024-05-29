@@ -14,15 +14,16 @@ struct ZoomImageReaderView: View {
     let source: Source
     
     @State var selectedIndex = 0
-    @State var scannedText = ""
     @State var isPresentingScannedTextView = false
     @State var pages: [ChapterPage] = []
+    @State var isShowingOverlay = false
+    
     
     @StateObject var viewModel = ReaderViewModel(provider: CoreDataManager.shared)
     var body: some View {
         NavigationStack {
             VStack {
-                ExtractedView(chapter: chapter, source: source, viewModel: viewModel, selectedIndex: $selectedIndex, scannedText: $scannedText, isPresentingScannedTextView: $isPresentingScannedTextView, pages: $pages)
+                ExtractedView(chapter: chapter, source: source, viewModel: viewModel, selectedIndex: $selectedIndex, isPresentingScannedTextView: $isPresentingScannedTextView, pages: $pages)
                 
             }
         }
@@ -39,13 +40,13 @@ struct ZoomImageReaderView: View {
         .onChange(of: selectedIndex) { newValue in
             viewModel.currentPageObservable.value = String(newValue + 1)
         }
-        .onChange(of: scannedText) { _ in
-            isPresentingScannedTextView = true
-        }
+        
         .onDisappear {
             viewModel.handleDismiss(isLocalSource: false, source: source)
         }
+        
     }
+    
 }
 
 struct ZoomImageReaderView_Previews: PreviewProvider {
@@ -55,13 +56,37 @@ struct ZoomImageReaderView_Previews: PreviewProvider {
 }
 
 struct ExtractedView: View {
+    var scannedTextView: some View {
+        ScrollView(.horizontal) {
+            HStack {
+                Button {
+                    isShowingOverlay = false
+                } label: {
+                    Image(systemName: "x.circle.fill")
+                }
+                Text(scannedText)
+                    .font(.system(size: 30))
+                    .lineLimit(1)
+                    .multilineTextAlignment(.leading)
+                    .padding(.horizontal)
+                    .textSelection(.enabled)
+                
+            }
+            
+        }
+        .frame(maxHeight: 60)
+        .background(Color(.black).opacity(0.7))
+        .offset(y: -50)
+    }
+    
     @Environment(\.dismiss) var dismiss
     let chapter: Chapter
     let source: Source
     @StateObject var viewModel: ReaderViewModel
     @Binding var selectedIndex: Int
-    @Binding var scannedText: String
     @Binding var isPresentingScannedTextView: Bool
+    @State var isShowingOverlay = false
+    @State var scannedText = ""
     @Binding var pages: [ChapterPage]
     @State var opacity = 1.0
     var body: some View {
@@ -81,8 +106,10 @@ struct ExtractedView: View {
             .padding()
             TabView(selection: $selectedIndex) {
                 ForEach(pages, id:\.self) { page in
-                    ImageZoomView(imageUrl: page.link, scannedText: scannedText)
+                    ImageZoomView(imageUrl: page.link, scannedText: $scannedText)
                         .tag(pages.firstIndex(of: page) ?? 0)
+                        .overlay(isShowingOverlay ? scannedTextView : nil, alignment: .bottom)
+                        
                 }
             }
             
@@ -93,10 +120,23 @@ struct ExtractedView: View {
                 } label: {
                     Image(systemName: opacity == 0 ? "eye.slash" : "eye.slash.fill")
                 }
+                Button {
+                    isShowingOverlay.toggle()
+                } label: {
+                    Image(systemName: isShowingOverlay == true ? "chevron.down" : "chevron.up")
+                }
 
                 Text("Page \(selectedIndex + 1) of \(viewModel.totalPagesObservable.value)")
                     .opacity(opacity)
                 
+            }
+        }
+        .onChange(of: scannedText) { newValue in
+//            isPresentingScannedTextView = true
+            print("confused")
+            if newValue != "" {
+                isShowingOverlay = true
+                print("set overlay true")
             }
         }
 

@@ -25,6 +25,7 @@ final class SingleSourceViewModel: ObservableObject {
 }
 
 struct SingleSourceView: View {
+    @Environment(Theme.self) private var theme
     @StateObject var viewModel = SingleSourceViewModel()
     let source: Source
     let columns: [GridItem] = Array(repeating: GridItem(.flexible()), count: 2)
@@ -46,7 +47,7 @@ struct SingleSourceView: View {
             }
         }
         .toolbarBackground(.hidden, for: .navigationBar)
-        .background(ThemeManager.shared.currentTheme.secondaryColor)
+        .background(theme.secondaryColor)
 
     }
 }

@@ -12,6 +12,7 @@ final class SourcesViewModel: ObservableObject {
 }
 
 struct SourcesView: View {
+    @Environment(Theme.self) private var theme
     @State var isPresentingAddSourceModal = false
     @StateObject var viewModel = SourcesViewModel()
     var body: some View {
@@ -19,12 +20,12 @@ struct SourcesView: View {
         List(viewModel.sources, id:\.self) {source in
             NavigationLink(value: source) {
                 Text(source.sourceTitle)
-                    .foregroundColor(ThemeManager.shared.currentTheme.textColor)
+                    .foregroundColor(theme.textColor)
             }
-            .listRowBackground(ThemeManager.shared.currentTheme.listBackgroundColor)
+            .listRowBackground(theme.listBackgroundColor)
         }
         .scrollContentBackground(.hidden)
-        .background(ThemeManager.shared.currentTheme.secondaryColor)
+        .background(theme.secondaryColor)
         .navigationTitle("Sources")
         .navigationDestination(for: Source.self) { source in
             SingleSourceView(source: source)

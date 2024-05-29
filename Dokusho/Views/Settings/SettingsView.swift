@@ -10,7 +10,9 @@ import CoreData
 
 struct SettingsView: View {
     @State var isDisplayingCategoryModal = false
-    @State var numberOfColumns = UserDefaults.standard.object(forKey: "numberOfColums") as! Int
+    @Environment(Theme.self) private var theme
+//    @State var selectedTheme: String
+    @State var numberOfColumns = UserDefaults.standard.object(forKey: "numberOfColums") as? Int ?? 2
     @State var serverAddress = ""
     @State var serverUsername = ""
     @State var serverPassword = ""
@@ -56,6 +58,13 @@ struct SettingsView: View {
                     UserDefaults.standard.set(serverPassword, forKey: "komga-server-password")
                 }
             }
+//            Section("Theme") {
+//                Picker("Current Theme", selection: $selectedTheme) {
+//                    ForEach(Theme.allColorSets, id:\.self) { colorSet in
+//                        Text(colorSet.name)
+//                    }
+//                }
+//            }
         }
         .navigationTitle("Settings")
         .fullScreenCover(isPresented: $isDisplayingCategoryModal) {
@@ -64,7 +73,12 @@ struct SettingsView: View {
         .onChange(of: numberOfColumns) { newValue in
             UserDefaults.standard.set(newValue, forKey: "numberOfColums")
         }
+//        .onChange(of: theme, perform: { newValue in
+//            ThemeManager.shared.currentTheme = newValue
+//            ThemeManager.shared.saveCurrentTheme()
+//        })
         .onAppear {
+//            selectedTheme = theme.selectedSet
             if let server = UserDefaults.standard.object(forKey: "komga-server-address") as? String {
                 serverAddress = server
             }

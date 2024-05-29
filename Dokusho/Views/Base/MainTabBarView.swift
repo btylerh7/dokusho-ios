@@ -11,6 +11,7 @@ extension Binding { func onUpdate(_ closure: @escaping () -> Void) -> Binding<Va
 }
 
 struct MainTabBarView: View {
+    @Environment(Theme.self) private var theme
     @State var selection = 0
     @State var selectedTag = 0
     @State var libraryPath = NavigationPath()
@@ -46,24 +47,25 @@ struct MainTabBarView: View {
             }
         })) {
             NavigationStack(path:$libraryPath) {
-                    LibraryView()
+//                    KomgaLibraryView()
+                KomgaCategorySelector()
             }
             .toolbarBackground(.hidden, for: .navigationBar)
                 .tabItem {
                     Label("Library", systemImage: "books.vertical.fill")
-                        .foregroundColor(ThemeManager.shared.currentTheme.textColor)
+                        .foregroundColor(theme.textColor)
                 }
                 .tag(0)
-            NavigationStack(path: $sourcesPath) {
-                SourcesView()
-            }
-            .toolbarBackground(.hidden, for: .navigationBar)
-            
-                .tabItem {
-                    Label("Sources", systemImage: "globe")
-                        .foregroundColor(ThemeManager.shared.currentTheme.textColor)
-                }
-                .tag(1)
+//            NavigationStack(path: $sourcesPath) {
+//                SourcesView()
+//            }
+//            .toolbarBackground(.hidden, for: .navigationBar)
+//
+//                .tabItem {
+//                    Label("Sources", systemImage: "globe")
+//                        .foregroundColor(ThemeManager.shared.currentTheme.textColor)
+//                }
+//                .tag(1)
             NavigationStack(path: $searchPath) {
                 SearchView()
                     .toolbarBackground(.hidden, for: .navigationBar)
@@ -71,21 +73,21 @@ struct MainTabBarView: View {
             
                 .tabItem {
                     Label("Search", systemImage: "magnifyingglass")
-                        .foregroundColor(ThemeManager.shared.currentTheme.textColor)
+                        .foregroundColor(theme.textColor)
                 }
-                .tag(2)
+                .tag(1)
             NavigationStack(path: $settingsPath){
                 SettingsView()
             }
             .toolbarBackground(.hidden, for: .navigationBar)
                 .tabItem {
                     Label("Settings", systemImage: "gear")
-                        .foregroundColor(ThemeManager.shared.currentTheme.textColor)
+                        .foregroundColor(theme.textColor)
                 }
-                .tag(3)
+                .tag(2)
             
         }
-        .tint(ThemeManager.shared.currentTheme.primaryColor)
+        .tint(theme.primaryColor)
         
     }
 }
