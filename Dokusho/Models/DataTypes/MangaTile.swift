@@ -8,8 +8,8 @@
 import Foundation
 import SwiftUI
 
-struct MangaTile: Codable, Hashable, Identifiable {
-    var id: String {
+public struct MangaTile: Codable, Hashable, Identifiable {
+    public var id: String {
         self.sourceId
     }
     let sourceId: String

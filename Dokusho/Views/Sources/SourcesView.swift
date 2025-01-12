@@ -18,9 +18,9 @@ struct SourcesView: View {
     var body: some View {
         
         List(viewModel.sources, id:\.self) {source in
+            Text(source.sourceTitle)
+                .foregroundColor(theme.textColor)
             NavigationLink(value: source) {
-                Text(source.sourceTitle)
-                    .foregroundColor(theme.textColor)
             }
             .listRowBackground(theme.listBackgroundColor)
         }
@@ -31,7 +31,8 @@ struct SourcesView: View {
             SingleSourceView(source: source)
         }
         .navigationDestination(for: MangaTile.self) { tile in
-            MangaDetailsView(manga: tile)
+            Text("NA")
+//            MangaDetailsView(manga: tile)
         }
     }
 }

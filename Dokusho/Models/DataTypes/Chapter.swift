@@ -7,7 +7,7 @@
 
 import Foundation
 
-struct Chapter: Codable, Hashable {
+public struct Chapter: Codable, Hashable {
     let mangaId: String
     let chapterId: String
     let chapNum: Float

@@ -21,7 +21,7 @@ public struct AllCollections: Codable {
     let empty: Bool?
 }
 
-struct Collection: Codable {
+public struct Collection: Codable {
     let id: String
     let name: String
     let ordered: Bool

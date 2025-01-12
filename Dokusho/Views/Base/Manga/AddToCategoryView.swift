@@ -6,16 +6,30 @@
 //
 
 import SwiftUI
-import CoreData
+import SwiftData
 
 struct AddToCategoryView: View {
-    @State var categories: [CategoryObject] = []
+    @Query var categories: [CategoryItem]
+    @Query var libraryItems: [LibraryItem]
     @Environment(\.dismiss) var dismiss
     var mangaId: String
     var sourceId: String
     var isLocalSource: Bool = false
     var localSourceId: UUID? = nil
-    @State var selectedCategories: [CategoryObject] = []
+    @State var selectedCategories: [CategoryItem] = []
+    init(mangaId: String, sourceId: String, isLocalSource: Bool = false, localSourceId: UUID? = nil) {
+        
+        let predicate = #Predicate<LibraryItem> { item in
+            item.mangaId == mangaId && item.sourceId == sourceId
+        }
+        _libraryItems = Query(filter: predicate)
+        
+        self.mangaId = mangaId
+        self.sourceId = sourceId
+        self.isLocalSource = isLocalSource
+        self.localSourceId = localSourceId
+        self.selectedCategories = selectedCategories
+    }
     var body: some View {
         VStack {
             HStack {
@@ -30,7 +44,7 @@ struct AddToCategoryView: View {
             }
             List(categories) { category in
                 HStack {
-                    Text(category.categoryId ?? "")
+                    Text(category.categoryId)
                     Spacer()
                     if selectedCategories.contains(category) {
                         Image(systemName: "checkmark")
@@ -50,27 +64,10 @@ struct AddToCategoryView: View {
                 
             }
         }
-        .onAppear {
-            fetchCategoryList()
-            if let libraryEntry = CoreDataManager.shared.getLibraryEntryFromId(id: mangaId) {
-                let categories = libraryEntry.categoriesArray
-                for category in categories {
-                    self.selectedCategories.append(category)
-                }
-            }
-        }
     }
 }
 
 private extension AddToCategoryView {
-    private func fetchCategoryList() {
-        let request = CategoryObject.all()
-        if let results = try? CoreDataManager.shared.viewContext.fetch(request) {
-            for category in results {
-                self.categories.append(category)
-            }
-        }
-    }
     private func addCategoriesToManga() {
         let context = CoreDataManager.shared.viewContext
         let categories = NSSet(array: self.selectedCategories)

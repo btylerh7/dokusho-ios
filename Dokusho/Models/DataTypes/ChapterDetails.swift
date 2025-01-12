@@ -7,13 +7,13 @@
 
 import Foundation
 
-struct ChapterDetails: Codable, Hashable {
+public struct ChapterDetails: Codable, Hashable {
     let chapterId: String
     var pages: [ChapterPage]
     var text: String? = ""
 }
 
-struct ChapterPage: Codable, Hashable {
+public struct ChapterPage: Codable, Hashable {
     let link: String
     let page: String
 }

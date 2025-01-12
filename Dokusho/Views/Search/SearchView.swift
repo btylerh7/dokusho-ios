@@ -21,6 +21,7 @@ final class SearchViewViewModel: ObservableObject {
 }
 
 struct SearchView: View {
+    @Environment(RouterPath.self) private var routerPath
     @StateObject var viewModel = SearchViewViewModel()
     @State var installedSources: [Source] = SourceManager.shared.sources
     @State var selectedSource = "rawkuma"
@@ -28,66 +29,50 @@ struct SearchView: View {
     @State private var query = ""
     let columns: [GridItem] = Array(repeating: GridItem(.flexible()), count: 2)
     var body: some View {
-        NavigationStack(path: $path) {
-            ScrollView {
-                VStack {
-                    HStack {
-                        Picker("Select Source", selection: $selectedSource) {
-                            ForEach(installedSources, id:\.self) { source in
-                                Text(source.sourceId)
-                                    .tag(source.sourceId)
-                            }
-                        }
-                        Spacer()
-
-                    }
-                    .padding(.horizontal)
-                    LazyVGrid(columns: columns, spacing: 20) {
-                        ForEach(viewModel.tiles, id: \.self) { tile in
-                            NavigationLink(value: tile) {
-                                MangaTileView(title: tile.title, image: tile.image, sourceId: tile.sourceId)
-                            }
+        ScrollView {
+            VStack {
+                HStack {
+                    Picker("Select Source", selection: $selectedSource) {
+                        ForEach(installedSources, id:\.self) { source in
+                            Text(source.sourceId)
+                                .tag(source.sourceId)
                         }
                     }
-                    .padding()
+                    Spacer()
+                    
                 }
-            }
-            .onChange(of: self.selectedSource, perform: { sourceName in
-                self.viewModel.selectedSource = SourceManager.shared.getSourceFromId(sourceId: sourceName)
-            })
-            .navigationDestination(for: MangaTile.self) { tile in
-                MangaDetailsView(manga: tile)
-                    .font(.headline)
-                    .navigationBarBackButtonHidden()
-                    .navigationBarItems(leading:
-                                            Button {
-                        path.removeLast()
-                    } label: {
-                        HStack {
-                            Image(systemName: "chevron.backward")
-                            Text("Browse")
-                        }
+                .padding(.horizontal)
+                LazyVGrid(columns: columns, spacing: 20) {
+                    ForEach(viewModel.tiles, id: \.self) { tile in
+                        MangaTileView(title: tile.title, image: tile.image, sourceId: tile.sourceId)
+                            .onTapGesture {
+                                routerPath.navigate(to: .mangaTile(tile: tile))
+                            }
                     }
-                    )
+                }
+                .padding()
             }
-            .navigationTitle("Search")
-            .searchable(text: $query, placement: .navigationBarDrawer(displayMode: .always), prompt: "Type Manga Name")
-            .onAppear {
-                self.viewModel.selectedSource = SourceManager.shared.getSourceFromId(sourceId: selectedSource)
-            }
-            .onChange(of: query) { query in
-                Task {
-                    do {
-                        try await viewModel.searchMangaTilesV2(query: query)
-                    }
-                    catch {
-                        
-                    }
+        }
+        .onChange(of: self.selectedSource) { oldSource, sourceName in
+            self.viewModel.selectedSource = SourceManager.shared.getSourceFromId(sourceId: sourceName)
+        }
+        .navigationTitle("Search")
+        .searchable(text: $query, placement: .navigationBarDrawer(displayMode: .always), prompt: "Type Manga Name")
+        .onAppear {
+            self.viewModel.selectedSource = SourceManager.shared.getSourceFromId(sourceId: selectedSource)
+        }
+        .onChange(of: query) { oldQuery, query in
+            Task {
+                do {
+                    try await viewModel.searchMangaTilesV2(query: query)
+                }
+                catch {
+                    
                 }
             }
         }
-        
     }
+    
 }
 
 struct SearchView_Previews: PreviewProvider {

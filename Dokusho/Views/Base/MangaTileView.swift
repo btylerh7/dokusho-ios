@@ -11,6 +11,7 @@ import NukeUI
 
 
 struct MangaTileView: View {
+    @Environment(NetworkManager.self) var client
     @State public var title: String
     @State public var image: String?
     @State public var uiImage: UIImage?
@@ -66,25 +67,23 @@ struct MangaTileView: View {
             .padding()
             .frame(width: 200, height: 300)
             .onAppear {
-                if image != nil {
-                    var request = ImageRequest(url: URL(string: image!))
-                    
-                    if sourceId == "komga" {
-                        var urlRequest = URLRequest(url:URL(string: image!)!)
-                        
-                        // TODO: Add guards here
-                        let serverUsername = UserDefaults.standard.object(forKey: "komga-server-username") as! String
-                        let serverPassword = UserDefaults.standard.object(forKey: "komga-server-password") as! String
-                        // Set the Authorization header with the basic authentication credentials
-                        let credentials = "\(serverUsername):\(serverPassword)".data(using: .utf8)?.base64EncodedString() ?? ""
-                        let authString = "Basic \(credentials)"
-                        urlRequest.setValue(authString, forHTTPHeaderField: "Authorization")
-                        request = ImageRequest(urlRequest: urlRequest)
-                    }
-                    
-                    self.request = request
-                }
+                setRequest()
             }
         }
+    }
+    
+    func setRequest() {
+        if let image = image {
+            var request = ImageRequest(url: URL(string: image))
+            
+            if sourceId == "komga" {
+                var urlRequest = URLRequest(url:URL(string: image)!)
+                urlRequest = client.addHeadersToRequest(request: &urlRequest, method: nil)
+                request = ImageRequest(urlRequest: urlRequest)
+            }
+            
+            self.request = request
+        }
+
     }
 }

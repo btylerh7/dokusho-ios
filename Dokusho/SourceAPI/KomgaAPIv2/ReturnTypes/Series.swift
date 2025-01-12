@@ -7,7 +7,7 @@
 
 import Foundation
 
-struct Series: Codable, Hashable {
+public struct Series: Codable, Hashable {
 
     let id: String
     let libraryId: String
@@ -24,11 +24,11 @@ struct Series: Codable, Hashable {
     let booksMetadata: BooksMetadata
     let deleted: Bool
     
-    static func == (lhs: Series, rhs: Series) -> Bool {
+    public static func == (lhs: Series, rhs: Series) -> Bool {
             return lhs.id == rhs.id
         }
 
-    func hash(into hasher: inout Hasher) {
+    public func hash(into hasher: inout Hasher) {
         hasher.combine(id)
     }
 }

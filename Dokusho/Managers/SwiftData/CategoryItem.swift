@@ -9,7 +9,7 @@ import Foundation
 import SwiftData
 
 @Model
-final class CategoryItem {
+public final class CategoryItem {
     var categoryId: String
     
     @Attribute(.unique)

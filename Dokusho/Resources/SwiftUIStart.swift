@@ -14,7 +14,7 @@ struct FSApp: App {
     @AppStorage("isFirstTimeAppLaunch") private var isFirstTimeLaunch: Bool = true
     var body: some Scene {
         WindowGroup {
-            MainTabBarView()
+            TabBarView()
                 .modelContainer(for: HistoryItem.self)
                 .modelContainer(for: MangaItem.self)
                 .modelContainer(CategoryContainer.create(shouldCreateDefaults: &isFirstTimeLaunch))

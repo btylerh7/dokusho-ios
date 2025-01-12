@@ -10,11 +10,12 @@ import NukeUI
 
 struct BookTileView: View {
     @Environment(Theme.self) private var theme
-    @State var book: Book
+    @Bindable var book: Book
     @State var url: URL? = nil
     @State var request: ImageRequest? = nil
         
     var body: some View {
+        @State var progress = Float(book.readProgress?.page ?? 0)
         
         VStack(alignment: .leading, spacing: 10) {
             ZStack (alignment:.bottom) {
@@ -27,7 +28,7 @@ struct BookTileView: View {
                         .lineLimit(/*@START_MENU_TOKEN@*/2/*@END_MENU_TOKEN@*/)
                         .fontWeight(.bold)
                         
-                    ProgressView(value: Float(book.readProgress?.page ?? 0), total: Float(book.media.pagesCount))
+                    ProgressView(value: progress, total: Float(book.media.pagesCount))
                         .progressViewStyle(LinearProgressViewStyle())
                         .tint(theme.primaryColor)
                         .padding(.horizontal)

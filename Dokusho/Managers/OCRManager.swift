@@ -7,6 +7,8 @@
 
 import Foundation
 import UIKit
+import VisionKit
+import Vision
 
 
 class OcrWord: Codable {
@@ -77,6 +79,45 @@ final public class OCRManager {
         return String(cleanUnicodeScalars)
     }
     
+    func liveTextExtract(from image:UIImage) async -> String?{
+        var recognizedTexts: [String] = []
+        guard let cgImage = image.cgImage else {
+            print("No cgImage")
+            return nil
+        }
+        let requestHandler = VNImageRequestHandler(cgImage: cgImage, options: [:])
+        
+        let request = VNRecognizeTextRequest { (request, error) in
+            guard let observations = request.results as? [VNRecognizedTextObservation] else {
+                print("Observation not converted")
+                return
+            }
+            print("Observations converted")
+
+            for observation in observations {
+                print("Top candidates being processed")
+                guard let topCandidate = observation.topCandidates(1).first else {
+                    continue
+                }
+
+                recognizedTexts.append(topCandidate.string)
+            }
+            
+        }
+
+        request.recognitionLevel = .accurate
+        request.recognitionLanguages.append("ja-JP")
+        request.usesLanguageCorrection = true
+
+        do {
+            try requestHandler.perform([request])
+            print("Recognized texts: \(recognizedTexts.joined(separator: " "))")
+            return recognizedTexts.joined(separator: " ")
+        } catch {
+            print("Error performing text recognition: \(error.localizedDescription)")
+            return nil
+        }
+    }
     func sendToApi(image: UIImage) async -> String?{
             var stringResult = ""
             let endpoint = "https://dokushou.cognitiveservices.azure.com/vision/v3.2/ocr"

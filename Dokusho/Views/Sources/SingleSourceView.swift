@@ -25,6 +25,7 @@ final class SingleSourceViewModel: ObservableObject {
 }
 
 struct SingleSourceView: View {
+    @Environment(RouterPath.self) private var routerPath
     @Environment(Theme.self) private var theme
     @StateObject var viewModel = SingleSourceViewModel()
     let source: Source
@@ -34,9 +35,10 @@ struct SingleSourceView: View {
         ScrollView {
             LazyVGrid(columns: columns, spacing: 20) {
                 ForEach(viewModel.tiles, id:\.self) {tile in
-                    NavigationLink(value: tile) {
-                        MangaTileView(title: tile.title, image:tile.image, sourceId: tile.sourceId)
-                    }
+                    MangaTileView(title: tile.title, image:tile.image, sourceId: tile.sourceId)
+                        .onTapGesture {
+                            routerPath.navigate(to: .mangaTile(tile: tile))
+                        }
                     
                 }
                 

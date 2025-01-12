@@ -14,6 +14,7 @@ public enum LazyImageType {
 }
 
 struct KomgaLazyImage: View {
+    @Environment(NetworkManager.self) private var client
     @State var id: String
     @State var type: LazyImageType
     @State var url: URL? = nil
@@ -40,16 +41,12 @@ struct KomgaLazyImage: View {
         .task {
             switch type {
             case .series:
-                guard let result = await Komgav2APIService.shared.getSeriesThumbnail(seriesId: self.id) else {
-                    return
-                }
+                let result = client.getSeriesThumbnail(seriesId: self.id)
                 self.url = URL(string: result)
                 makeImageRequest()
                 break
             case .book:
-                guard let result = await Komgav2APIService.shared.getBookThumbnail(bookId: self.id) else {
-                    return
-                }
+                let result = client.getBookThumbnail(bookId: self.id)
                 self.url = URL(string: result)
                 makeImageRequest()
                 break
@@ -62,14 +59,7 @@ extension KomgaLazyImage {
     func makeImageRequest() {
         guard let url = self.url else {return}
         var urlRequest = URLRequest(url: url)
-        
-        // TODO: Add guards here
-        let serverUsername = UserDefaults.standard.object(forKey: "komga-server-username") as! String
-        let serverPassword = UserDefaults.standard.object(forKey: "komga-server-password") as! String
-        // Set the Authorization header with the basic authentication credentials
-        let credentials = "\(serverUsername):\(serverPassword)".data(using: .utf8)?.base64EncodedString() ?? ""
-        let authString = "Basic \(credentials)"
-        urlRequest.setValue(authString, forHTTPHeaderField: "Authorization")
+        urlRequest = client.addHeadersToRequest(request: &urlRequest, method: nil)
         request = ImageRequest(urlRequest: urlRequest)
         
         self.request = request

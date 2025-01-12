@@ -8,8 +8,13 @@
 import SwiftUI
 
 struct SettingsTab: View {
+    @State private var routerPath = RouterPath()
     var body: some View {
-        Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
+        NavigationStack(path: $routerPath.path) {
+            SettingsView()
+                .withAppRouter()
+        }
+        .environment(routerPath)
     }
 }
 

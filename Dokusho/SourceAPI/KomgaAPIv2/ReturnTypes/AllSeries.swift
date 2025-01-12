@@ -7,7 +7,7 @@
 
 import Foundation
 
-struct AllSeries: Codable {
+public struct AllSeries: Codable {
     let content: [Series]
     let pageable: Pageable
     let totalElements: Int
@@ -21,7 +21,7 @@ struct AllSeries: Codable {
     let empty: Bool
 }
 
-struct Pageable: Codable {
+public struct Pageable: Codable {
     let sort: Sort
     let offset: Int
     let pageNumber: Int
@@ -30,7 +30,7 @@ struct Pageable: Codable {
     let unpaged: Bool
 }
 
-struct Sort: Codable {
+public struct Sort: Codable {
     let empty: Bool
     let sorted: Bool
     let unsorted: Bool

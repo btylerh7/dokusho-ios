@@ -11,6 +11,7 @@ import CoreData
 struct SettingsView: View {
     @State var isDisplayingCategoryModal = false
     @Environment(Theme.self) private var theme
+    @Environment(NetworkManager.self) private var client
 //    @State var selectedTheme: String
     @State var numberOfColumns = UserDefaults.standard.object(forKey: "numberOfColums") as? Int ?? 2
     @State var serverAddress = ""
@@ -53,9 +54,9 @@ struct SettingsView: View {
                 TextField("Server Username", text: $serverUsername)
                 SecureField("Server Password", text: $serverPassword)
                 Button("Set Komga Info") {
-                    UserDefaults.standard.set(serverAddress, forKey: "komga-server-address")
-                    UserDefaults.standard.set(serverUsername, forKey: "komga-server-username")
-                    UserDefaults.standard.set(serverPassword, forKey: "komga-server-password")
+                    client.serverAddress = serverAddress
+                    client.username = serverUsername
+                    client.password = serverPassword
                 }
             }
 //            Section("Theme") {
@@ -70,24 +71,13 @@ struct SettingsView: View {
         .fullScreenCover(isPresented: $isDisplayingCategoryModal) {
             AddCategoryView()
         }
-        .onChange(of: numberOfColumns) { newValue in
+        .onChange(of: numberOfColumns) { _, newValue in
             UserDefaults.standard.set(newValue, forKey: "numberOfColums")
         }
-//        .onChange(of: theme, perform: { newValue in
-//            ThemeManager.shared.currentTheme = newValue
-//            ThemeManager.shared.saveCurrentTheme()
-//        })
         .onAppear {
-//            selectedTheme = theme.selectedSet
-            if let server = UserDefaults.standard.object(forKey: "komga-server-address") as? String {
-                serverAddress = server
-            }
-            if let username = UserDefaults.standard.object(forKey: "komga-server-username") as? String {
-                serverUsername = username
-            }
-            if let password = UserDefaults.standard.object(forKey: "komga-server-password") as? String {
-                serverPassword = password
-            }
+            serverAddress = client.serverAddress
+            serverUsername = client.username
+            serverPassword = client.password
         }
         
     }

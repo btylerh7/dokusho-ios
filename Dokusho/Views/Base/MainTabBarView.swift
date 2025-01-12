@@ -48,7 +48,7 @@ struct MainTabBarView: View {
         })) {
             NavigationStack(path:$libraryPath) {
 //                    KomgaLibraryView()
-                KomgaCategorySelector()
+                LibraryView()
             }
             .toolbarBackground(.hidden, for: .navigationBar)
                 .tabItem {

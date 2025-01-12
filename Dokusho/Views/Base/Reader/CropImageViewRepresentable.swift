@@ -8,10 +8,13 @@
 import Foundation
 import UIKit
 import SwiftUI
+import VisionKit
 import CropViewController
 
 struct CropImageViewControllerRepresentable: UIViewControllerRepresentable {
-    @Binding var scannedText: String
+//    @Binding var scannedText: String
+    @Binding var scannedImage: UIImage
+    @Binding var shouldScan: Bool
     var image: UIImage
     
     func makeUIViewController(context: Context) -> UIViewController {
@@ -23,7 +26,6 @@ struct CropImageViewControllerRepresentable: UIViewControllerRepresentable {
     func updateUIViewController(_ uiViewController: UIViewController, context: Context) {
         
     }
-    
     func makeCoordinator() -> Coordinator {
         return Coordinator(self)
     }
@@ -36,13 +38,13 @@ struct CropImageViewControllerRepresentable: UIViewControllerRepresentable {
         }
         
         func cropViewController(_ cropViewController: CropViewController, didFinishCancelled cancelled: Bool) {
+            parent.cancel()
             cropViewController.dismiss(animated: true)
+            
         }
         
         func cropViewController(_ cropViewController: CropViewController, didCropToImage image: UIImage, withRect cropRect: CGRect, angle: Int) {
-            Task {
-                await parent.detectText(image: image)
-            }
+            parent.setImage(image: image)
             cropViewController.dismiss(animated: true)
         }
     }
@@ -50,10 +52,21 @@ struct CropImageViewControllerRepresentable: UIViewControllerRepresentable {
 
 extension CropImageViewControllerRepresentable {
     private func detectText(image:UIImage) async {
-        let resultText = await OCRManager.shared.sendToApi(image: image)
-        let cleanedText = OCRManager.shared.cleanOutput(resultText ?? "")
-        DispatchQueue.main.async {
-            self.scannedText = cleanedText
-        }
+        let cleanedText = await OCRManager.shared.liveTextExtract(from: image)
+//        let resultText = await OCRManager.shared.sendToApi(image: image)
+//        let cleanedText = OCRManager.shared.cleanOutput(resultText ?? "")
+//        DispatchQueue.main.async {
+//            self.scannedText = cleanedText ?? ""
+//        }
+    }
+    private func cancel() {
+        self.shouldScan = false
+        self.scannedImage = UIImage()
+    }
+    private func setImage(image: UIImage) {
+        self.shouldScan = true
+        self.scannedImage = image
     }
 }
+
+

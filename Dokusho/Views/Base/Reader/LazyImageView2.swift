@@ -6,13 +6,86 @@
 //
 
 import SwiftUI
+import NukeUI
+import OSLog
 
 struct LazyImageView2: View {
+    var imageUrl: String
+    var canShowLiveText = false
+    @Binding var imageToScan: UIImage
+    @Binding var showingLiveTextView: Bool
+    @Binding var scanLiveText: Bool
+    @Binding var scanCropImage: Bool
+    @State var shouldScan = false
+    @State var image: Image? = nil
+    @State var cropImage: UIImage = UIImage()
     var body: some View {
-        Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
+        VStack {
+            LazyImage(url: URL(string: imageUrl)) { state in
+                if state.isLoading {ProgressView()}
+                if state.image != nil {
+                    state.image!
+                        .resizable()
+                        .aspectRatio(contentMode: .fit)
+                        .onAppear {
+                            self.image = state.image
+                        }
+                        .onChange(of: self.scanLiveText, { oldValue, newValue in
+                            if newValue == true {
+                                self.createLiveTextImage(image: state.image!)
+                            }
+                        })
+                        .onLongPressGesture(perform: {
+                            if self.canShowLiveText == true {
+                                self.createLiveTextImage(image: state.image!)
+                            }
+                        })
+                        .sheet(isPresented: $scanCropImage) {
+                            if shouldScan == true {
+                                self.createLiveTextFromUIImage(image: self.cropImage)
+                                self.scanCropImage = false
+                            }
+                        } content: {
+                            CropImageViewControllerRepresentable(scannedImage: $cropImage, shouldScan: $shouldScan, image: imageToScan)
+                        }
+
+                }
+                
+            }
+        }
+    }
+}
+extension LazyImageView2 {
+    
+    func createUIImage(image: Image) async {
+        let renderedImage = ImageRenderer(content: image)
+        if let uiImage = renderedImage.uiImage {
+            Logger.lazyImageLogger.info("Live text image created")
+            self.cropImage = uiImage
+        } else {
+            Logger.lazyImageLogger.error("Failed to render image for live text analysis")
+        }
+
+    }
+    func createLiveTextFromUIImage(image: UIImage) {
+        Logger.lazyImageLogger.info("Live text image created")
+        self.imageToScan = image
+        self.showingLiveTextView = true
+    }
+    func createLiveTextImage(image: Image) {
+        Logger.lazyImageLogger.info("Rendering image for live text analysis")
+        let renderedImage = ImageRenderer(content: image)
+        if let uiImage = renderedImage.uiImage {
+            Logger.lazyImageLogger.info("Live text image created")
+            self.imageToScan = uiImage
+            self.showingLiveTextView = true
+        } else {
+            Logger.lazyImageLogger.error("Failed to render image for live text analysis")
+        }
+        
     }
 }
 
-#Preview {
-    LazyImageView2()
-}
+//#Preview {
+//    LazyImageView2()
+//}

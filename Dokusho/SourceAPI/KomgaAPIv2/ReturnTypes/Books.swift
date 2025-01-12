@@ -6,11 +6,14 @@
 //
 
 import Foundation
-struct Books: Codable {
+import Observation
+
+@Observable
+public class Books: Codable {
     let totalElements: Int
     let totalPages: Int
     let size: Int
-    let content: [Book]
+    var content: [Book]
     let number: Int
     let sort: Sort
     let first: Bool

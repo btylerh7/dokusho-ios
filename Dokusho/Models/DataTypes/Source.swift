@@ -7,7 +7,7 @@
 
 import Foundation
 
-struct Source: Codable, Hashable {
+public struct Source: Codable, Hashable {
     let sourceId: String
     let sourceTitle: String
     let baseUrl: String

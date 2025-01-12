@@ -7,7 +7,7 @@
 
 import Foundation
 
-struct MangaDetails: Codable, Equatable {
+public struct MangaDetails: Codable, Equatable {
     let sourceId: String
     let mangaId: String
     let title: String
