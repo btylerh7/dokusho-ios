@@ -13,7 +13,7 @@ struct LazyImageView2: View {
     var imageUrl: String
     var canShowLiveText = false
     @Binding var imageToScan: UIImage
-    @Binding var showingLiveTextView: Bool
+    @State var showingLiveTextView: Bool = false
     @Binding var scanLiveText: Bool
     @Binding var scanCropImage: Bool
     @State var shouldScan = false
@@ -37,9 +37,17 @@ struct LazyImageView2: View {
                         })
                         .onLongPressGesture(perform: {
                             if self.canShowLiveText == true {
-                                self.createLiveTextImage(image: state.image!)
+                                let uiImage = state.image!.asUIImage()
+                                self.imageToScan = uiImage
+                                self.showingLiveTextView = true
                             }
                         })
+                        .sheet(isPresented: $showingLiveTextView) {
+                            self.scanLiveText = false
+                            self.scanCropImage = false
+                        } content: {
+                                LiveTextUIImageView(image: imageToScan)
+                        }
                         .sheet(isPresented: $scanCropImage) {
                             if shouldScan == true {
                                 self.createLiveTextFromUIImage(image: self.cropImage)
@@ -74,14 +82,14 @@ extension LazyImageView2 {
     }
     func createLiveTextImage(image: Image) {
         Logger.lazyImageLogger.info("Rendering image for live text analysis")
-        let renderedImage = ImageRenderer(content: image)
-        if let uiImage = renderedImage.uiImage {
-            Logger.lazyImageLogger.info("Live text image created")
-            self.imageToScan = uiImage
-            self.showingLiveTextView = true
-        } else {
-            Logger.lazyImageLogger.error("Failed to render image for live text analysis")
-        }
+//        let renderedImage = ImageRenderer(content: image)
+//        if let uiImage = renderedImage.uiImage {
+//            Logger.lazyImageLogger.info("Live text image created")
+//            self.imageToScan = uiImage
+//            self.showingLiveTextView = true
+//        } else {
+//            Logger.lazyImageLogger.error("Failed to render image for live text analysis")
+//        }
         
     }
 }

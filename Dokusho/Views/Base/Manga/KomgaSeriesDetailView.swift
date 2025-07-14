@@ -15,7 +15,7 @@ struct KomgaSeriesTagPillView: View {
         Text(title)
             .font(.caption)
             .padding(5)
-            .foregroundColor(theme.textColor)
+            .foregroundColor(Color.white)
             .background(theme.primaryColor)
             .cornerRadius(10)
             

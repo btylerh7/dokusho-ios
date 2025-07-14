@@ -30,7 +30,7 @@ struct KomgaReaderView: View {
                 TabView(selection: $selectedPage) {
                     ForEach(createPages(), id:\.1) { (pageUrl, page) in
                         MediaUIZoomableContainer {
-                            LazyImageView2(imageUrl: pageUrl, canShowLiveText: true, imageToScan: $imageToScan, showingLiveTextView: $showingLiveTextView, scanLiveText: $scanLiveText, scanCropImage: $scanCropImage)
+                            LazyImageView2(imageUrl: pageUrl, canShowLiveText: true, imageToScan: $imageToScan, scanLiveText: $scanLiveText, scanCropImage: $scanCropImage)
                         }
                         .tag(page)
                     }
@@ -43,12 +43,6 @@ struct KomgaReaderView: View {
                     withAnimation {
                         showingPageCount.toggle()
                     }
-                }
-                .sheet(isPresented: $showingLiveTextView) {
-                    self.scanLiveText = false
-                    self.scanCropImage = false
-                } content: {
-                        LiveTextUIImageView(image: imageToScan)
                 }
             }
             .task {
@@ -102,14 +96,17 @@ struct KomgaReaderView: View {
 extension KomgaReaderView {
     func createLiveTextImage(image: Image) {
         Logger.lazyImageLogger.info("Rendering image for live text analysis")
-        let renderedImage = ImageRenderer(content: image)
-        if let uiImage = renderedImage.uiImage {
-            Logger.lazyImageLogger.info("Live text image created")
-            self.imageToScan = uiImage
-            self.showingLiveTextView = true
-        } else {
-            Logger.lazyImageLogger.error("Failed to render image for live text analysis")
-        }
+        let toUiImage = image.asUIImage()
+//        let renderedImage = ImageRenderer(content: image)
+        self.imageToScan = toUiImage
+        self.showingLiveTextView = true
+//        if let uiImage = renderedImage.uiImage {
+//            Logger.lazyImageLogger.info("Live text image created")
+//            self.imageToScan = uiImage
+//            self.showingLiveTextView = true
+//        } else {
+//            Logger.lazyImageLogger.error("Failed to render image for live text analysis")
+//        }
     }
     func createPages() -> [(String, Int)] {
         var results:[(String, Int)]  = []
