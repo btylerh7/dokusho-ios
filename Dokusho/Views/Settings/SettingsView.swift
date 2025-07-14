@@ -12,8 +12,9 @@ struct SettingsView: View {
     @State var isDisplayingCategoryModal = false
     @Environment(Theme.self) private var theme
     @Environment(NetworkManager.self) private var client
-//    @State var selectedTheme: String
-    @State var numberOfColumns = UserDefaults.standard.object(forKey: "numberOfColums") as? Int ?? 2
+    @AppStorage("numberOfColums") private var numberOfColumns: Int = 2
+    //    @State var selectedTheme: String
+//    @State var numberOfColumns = UserDefaults.standard.object(forKey: "numberOfColums") as? Int ?? 2
     @State var serverAddress = ""
     @State var serverUsername = ""
     @State var serverPassword = ""
