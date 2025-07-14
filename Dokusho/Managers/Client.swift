@@ -13,6 +13,9 @@ import OSLog
 @Observable
 public final class Client {
     public enum KomgaAPIEndpoints {
+        case libraries
+        case library(id: String)
+        
         case allSeries
         case singleSeries(id: String)
         case seriesThumbnail(id: String)
@@ -35,6 +38,10 @@ public final class Client {
         
         var rawValue: String {
             switch self {
+            case .libraries:
+                return "libraries"
+            case .library(let id):
+                return "libraries/\(id)"
             case .allSeries:
                 return "series"
             case .singleSeries(let id):
@@ -144,6 +151,10 @@ public final class Client {
     }
     func getReturnType(endpoint: KomgaAPIEndpoints) async -> Codable.Type {
         switch endpoint {
+        case .libraries:
+            return [Library].self
+        case .library(_):
+            return Library.self
         case .allSeries:
             return AllSeries.self
         case .singleSeries(_):
@@ -211,7 +222,6 @@ public final class Client {
         
         let debugPrintObject = try? JSONSerialization.jsonObject(with: data)
         Logger.clientLogger.debug("Data was \(debugPrintObject.debugDescription)")
-        let decoder = JSONDecoder()
         if let decodedData = self.decodeData(data, type: endpoint.returnType.self) {
             return decodedData
         }
@@ -263,7 +273,9 @@ public final class Client {
         return nil
     }
     func getAllSeries() async -> AllSeries? {
-        return await get(endpoint: .allSeries, type: AllSeries.self)
+        let result = await get(endpoint: .allSeries, type: AllSeries.self)
+        
+        return result
         
     }
     func getAllCollections() async -> AllCollections? {
@@ -330,6 +342,9 @@ public final class Client {
         let result = await patch(endpoint: .bookProgress(id: bookId), type: String.self, id: bookId, page: page, total: total)
         let progress = await get(endpoint: .book(id: bookId), type: Book.self)
         return progress?.readProgress?.page
+    }
+    func getAllLibraries() async -> [Library]? {
+        return await get(endpoint: .libraries, type: [Library].self)
     }
     func getSeriesThumbnail(seriesId: String) -> String {
         return "\(serverAddress)/api/v1/series/\(seriesId)/thumbnail"

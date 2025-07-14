@@ -141,11 +141,24 @@ public class NetworkManager {
 extension NetworkManager {
     
     func getAllSeries() async -> AllSeries? {
-        return try? await self.makeUrlRequestNew(endpoint: KomgaAllSeries())
+        let result = try? await self.makeUrlRequestNew(endpoint: KomgaAllSeries())
+        if let result = result {
+            let message = result.content.map({ series in
+                return series.metadata.title
+            }).joined(separator: ",")
+            
+            Logger.clientLogger.debug("resulting series list: \(message)")
+        } else {
+            Logger.clientLogger.error("No series found")
+        }
+        return result
     }
     func getAllCollections() async -> AllCollections? {
         return try? await self.makeUrlRequestNew(endpoint: KomgaAllCollections())
         
+    }
+    func getAllLibraries() async -> [Library]? {
+        return try? await self.makeUrlRequestNew(endpoint: KomgaAllLibraries())
     }
     func getSingleSeries(seriesId: String) async -> Series? {
         return try? await self.makeUrlRequestNew(endpoint: KomgaSeries(seriesId))

@@ -6,3 +6,6 @@
 //
 
 import Foundation
+
+typealias NetworkResult<T: Codable> = Result<T, Error>
+
