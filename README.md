@@ -1,4 +1,5 @@
-Dokusho iOS
+# Dokusho iOS
+
 Dokusho is an iOS client for the self-hosted manga service Komga. I have been using Komga for many years, 
 and learning Japanese for many years. When I started using other applications, I decided I wanted to write an app that 
 would allow me to select text on a page so I could look up words I did not know. I spent many hours working on the application, 
